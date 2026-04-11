@@ -101,8 +101,8 @@ import Layout from '../layouts/Layout.astro';
                 <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <p class="font-bold text-heading text-sm">24-Hour Turnaround</p>
-                <p class="text-muted text-xs">Fresh & folded, fast</p>
+                <p class="font-bold text-heading text-sm">Same-Day Available</p>
+                <p class="text-muted text-xs">24hr, 48hr, or same-day</p>
               </div>
             </div>
           </div>
@@ -177,52 +177,129 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center mb-16 reveal">
         <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Transparent Pricing</p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Simple, Honest Pricing</h2>
-        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">No hidden fees. We weigh your laundry after pickup and send you an invoice before we start washing.</p>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">No payment due at booking. We weigh your laundry after pickup or drop-off and invoice you before we start. 10 lb minimum per order.</p>
       </div>
-      <div class="max-w-lg mx-auto reveal">
-        <div class="bg-surface rounded-3xl shadow-xl border border-border overflow-hidden">
-          <div class="bg-gradient-to-r from-primary to-primary-light p-8 text-center text-white">
-            <h3 class="text-xl font-heading font-bold mb-2">Wash, Dry & Fold</h3>
-            <div class="flex items-baseline justify-center gap-1">
-              <span class="text-6xl font-heading font-bold">$1.75</span>
-              <span class="text-xl opacity-80">/ lb</span>
+
+      <!-- Pricing Toggle -->
+      <div class="flex justify-center mb-10 reveal">
+        <div class="inline-flex bg-surface-alt rounded-full p-1.5 border border-border">
+          <button id="tab-pickup" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 bg-primary text-white shadow-sm">
+            Pickup & Delivery
+          </button>
+          <button id="tab-dropoff" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 text-body hover:text-heading">
+            Drop-Off & Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto reveal">
+        <!-- 48 Hour -->
+        <div class="bg-surface rounded-2xl shadow-lg border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="p-6 text-center">
+            <span class="inline-block px-3 py-1 bg-secondary text-primary text-xs font-semibold rounded-full mb-4">Best Value</span>
+            <h3 class="text-lg font-heading font-bold text-heading mb-1">48-Hour Return</h3>
+            <div class="flex items-baseline justify-center gap-1 my-4">
+              <span class="text-5xl font-heading font-bold text-heading price-amount" data-pickup="1.85" data-dropoff="1.55">$1.85</span>
+              <span class="text-lg text-muted">/ lb</span>
             </div>
-            <p class="mt-2 opacity-80">15 lb minimum per order</p>
+            <p class="text-sm text-muted">10 lb minimum</p>
           </div>
-          <div class="p-8">
-            <ul class="space-y-4">
-              {['Free porch pickup', 'Free delivery', 'Weighed after pickup — no surprises', '24-hour turnaround', 'Quality detergents (free & clear available)', 'Kids & baby clothes welcome'].map((item) => (
-                <li class="flex items-center gap-3">
-                  <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  <span>{item}</span>
-                </li>
-              ))}
+          <div class="px-6 pb-6">
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Wash, dry & fold</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="pickup-feature">Free pickup & delivery</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
             </ul>
-            <div class="mt-8 p-6 bg-surface-alt rounded-2xl border border-border">
-              <h4 class="text-sm font-semibold text-heading uppercase tracking-wide mb-4">Estimate Your Cost</h4>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between text-sm mb-2">
-                    <span class="text-body">Pounds of laundry</span>
-                    <span id="weight-display" class="font-bold text-heading">20 lbs</span>
-                  </div>
-                  <input type="range" id="weight-slider" min="15" max="60" value="20" step="1" class="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary" />
-                  <div class="flex justify-between text-xs text-muted mt-1">
-                    <span>15 lbs</span>
-                    <span>60 lbs</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-between pt-4 border-t border-border">
-                  <span class="text-body font-medium">Estimated Total</span>
-                  <span id="price-display" class="text-3xl font-heading font-bold text-primary">$35.00</span>
-                </div>
-              </div>
-            </div>
-            <a href="#book" class="mt-8 w-full inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg text-lg">
-              Schedule a Pickup
+            <a href="#book" class="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
+              Book Now
             </a>
           </div>
         </div>
+
+        <!-- 24 Hour (Featured) -->
+        <div class="bg-surface rounded-2xl shadow-xl border-2 border-primary overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative">
+          <div class="bg-primary text-white text-center py-2 text-xs font-bold uppercase tracking-wider">Most Popular</div>
+          <div class="p-6 text-center">
+            <h3 class="text-lg font-heading font-bold text-heading mb-1">24-Hour Return</h3>
+            <div class="flex items-baseline justify-center gap-1 my-4">
+              <span class="text-5xl font-heading font-bold text-primary price-amount" data-pickup="2.25" data-dropoff="1.95">$2.25</span>
+              <span class="text-lg text-muted">/ lb</span>
+            </div>
+            <p class="text-sm text-muted">10 lb minimum</p>
+          </div>
+          <div class="px-6 pb-6">
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Wash, dry & fold</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="pickup-feature">Free pickup & delivery</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Fast turnaround</span></li>
+            </ul>
+            <a href="#book" class="cta-pulse w-full inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 text-sm shadow-lg shadow-accent/25">
+              Book Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Same Day -->
+        <div class="bg-surface rounded-2xl shadow-lg border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="p-6 text-center">
+            <span class="inline-block px-3 py-1 bg-accent/10 text-accent-hover text-xs font-semibold rounded-full mb-4">Fastest</span>
+            <h3 class="text-lg font-heading font-bold text-heading mb-1">Same-Day Return</h3>
+            <div class="flex items-baseline justify-center gap-1 my-4">
+              <span class="text-5xl font-heading font-bold text-heading price-amount" data-pickup="2.85" data-dropoff="2.55">$2.85</span>
+              <span class="text-lg text-muted">/ lb</span>
+            </div>
+            <p class="text-sm text-muted">10 lb minimum</p>
+          </div>
+          <div class="px-6 pb-6">
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Wash, dry & fold</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="pickup-feature">Free pickup & delivery</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
+              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Returned same day</span></li>
+            </ul>
+            <a href="#book" class="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price Calculator -->
+      <div class="max-w-md mx-auto mt-12 reveal">
+        <div class="p-6 bg-surface-alt rounded-2xl border border-border">
+          <h4 class="text-sm font-semibold text-heading uppercase tracking-wide mb-4">Estimate Your Cost</h4>
+          <div class="space-y-4">
+            <div>
+              <label for="calc-service" class="block text-sm text-body mb-2">Service</label>
+              <select id="calc-service" class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-heading text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                <option value="1.85">48-Hour Return — $1.85/lb (pickup & delivery)</option>
+                <option value="2.25" selected>24-Hour Return — $2.25/lb (pickup & delivery)</option>
+                <option value="2.85">Same-Day Return — $2.85/lb (pickup & delivery)</option>
+                <option value="1.55">48-Hour Return — $1.55/lb (drop-off)</option>
+                <option value="1.95">24-Hour Return — $1.95/lb (drop-off)</option>
+                <option value="2.55">Same-Day Return — $2.55/lb (drop-off)</option>
+              </select>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <span class="text-body">Pounds of laundry</span>
+                <span id="weight-display" class="font-bold text-heading">20 lbs</span>
+              </div>
+              <input type="range" id="weight-slider" min="10" max="60" value="20" step="1" class="w-full" />
+              <div class="flex justify-between text-xs text-muted mt-1">
+                <span>10 lbs</span>
+                <span>60 lbs</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+              <span class="text-body font-medium">Estimated Total</span>
+              <span id="price-display" class="text-3xl font-heading font-bold text-primary">$45.00</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-xs text-muted mt-3">*Invoicing occurs after pickup or drop-off</p>
       </div>
     </div>
   </section>
@@ -276,7 +353,7 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Loved by Beaufort Families</h2>
       </div>
       <div class="flex flex-wrap justify-center gap-8 sm:gap-16 mb-16 reveal">
-        {[{ val: '50+', label: 'Families Served' }, { val: '5.0', label: 'Average Rating' }, { val: '24hr', label: 'Turnaround' }].map(({ val, label }) => (
+        {[{ val: '50+', label: 'Families Served' }, { val: '5.0', label: 'Average Rating' }, { val: '3', label: 'Speed Options' }].map(({ val, label }) => (
           <div class="text-center">
             <p class="text-4xl font-heading font-bold text-primary">{val}</p>
             <p class="text-sm text-muted mt-1">{label}</p>
@@ -572,22 +649,59 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <script>
+    // Pricing Toggle
+    const tabPickup = document.getElementById('tab-pickup')!;
+    const tabDropoff = document.getElementById('tab-dropoff')!;
+    const priceAmounts = document.querySelectorAll('.price-amount');
+    const pickupFeatures = document.querySelectorAll('.pickup-feature');
+    let isPickup = true;
+
+    function updatePricing(pickup: boolean) {
+      isPickup = pickup;
+      priceAmounts.forEach(el => {
+        const price = pickup ? el.getAttribute('data-pickup') : el.getAttribute('data-dropoff');
+        el.textContent = `$${parseFloat(price!).toFixed(2)}`;
+      });
+      pickupFeatures.forEach(el => {
+        el.textContent = pickup ? 'Free pickup & delivery' : 'You drop off & pick up';
+      });
+      if (pickup) {
+        tabPickup.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        tabPickup.classList.remove('text-body');
+        tabDropoff.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        tabDropoff.classList.add('text-body');
+      } else {
+        tabDropoff.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        tabDropoff.classList.remove('text-body');
+        tabPickup.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        tabPickup.classList.add('text-body');
+      }
+      updateCalc();
+    }
+    tabPickup.addEventListener('click', () => updatePricing(true));
+    tabDropoff.addEventListener('click', () => updatePricing(false));
+
     // Price Calculator
     const slider = document.getElementById('weight-slider') as HTMLInputElement;
+    const calcService = document.getElementById('calc-service') as HTMLSelectElement;
     const weightDisplay = document.getElementById('weight-display');
     const priceDisplay = document.getElementById('price-display');
-    slider?.addEventListener('input', () => {
+
+    function updateCalc() {
       const w = parseInt(slider.value);
+      const rate = parseFloat(calcService.value);
       weightDisplay!.textContent = `${w} lbs`;
-      priceDisplay!.textContent = `$${(w * 1.75).toFixed(2)}`;
-    });
+      priceDisplay!.textContent = `$${(w * rate).toFixed(2)}`;
+    }
+    slider?.addEventListener('input', updateCalc);
+    calcService?.addEventListener('change', updateCalc);
 
     // FAQ Accordion
     const faqs = [
       { q: "How does the service work?", a: "Schedule a pickup online (no payment needed). Leave your laundry on the porch and we'll pick it up. We weigh it and send you an invoice by email. Once you pay online, we wash, dry, fold, and deliver it back to your doorstep — usually within 24 hours." },
       { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
       { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
-      { q: "How is pricing determined?", a: "After we pick up your laundry, we weigh it and send you an invoice at $1.75 per pound (15 lb minimum). You don't pay anything upfront — you'll get an email with your exact total and a link to pay online before we start washing. A full kitchen trash bag is typically around 15-20 lbs." },
+      { q: "How is pricing determined?", a: "After we pick up (or you drop off) your laundry, we weigh it and send you an invoice. Pricing starts at $1.85/lb for 48-hour return with pickup & delivery, or $1.55/lb if you drop off. 10 lb minimum per order. You don't pay anything upfront — you'll get an email with your exact total and a link to pay online. A full kitchen trash bag is typically around 15-20 lbs." },
       { q: "What area do you serve?", a: "We serve the Beaufort, SC area including zip codes 29901 through 29907. This includes MCAS Beaufort base housing — we have base access!" },
       { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
       { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime via your confirmation email or by contacting us directly. We appreciate at least 12 hours notice when possible." },
