@@ -141,17 +141,20 @@ const ogImage = `${siteUrl}/images/courtney.webp`;
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      // Mobile menu toggle
+      // Mobile menu toggle with animation
       const menuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       menuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
+        const isOpen = mobileMenu?.classList.contains('grid-rows-[1fr]');
+        mobileMenu?.classList.toggle('grid-rows-[1fr]', !isOpen);
+        mobileMenu?.classList.toggle('grid-rows-[0fr]', isOpen);
       });
 
       // Close mobile menu on link click
       mobileMenu?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          mobileMenu?.classList.add('hidden');
+          mobileMenu?.classList.remove('grid-rows-[1fr]');
+          mobileMenu?.classList.add('grid-rows-[0fr]');
         });
       });
 
