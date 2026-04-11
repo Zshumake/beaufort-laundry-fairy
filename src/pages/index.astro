@@ -500,6 +500,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <form id="booking-form" class="p-8" action="https://formspree.io/f/mjgpnjdn" method="POST">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
             <div id="step-1" class="space-y-6">
               <div class="grid sm:grid-cols-2 gap-6">
                 <div>
@@ -620,6 +621,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="reveal reveal-delay-2">
           <form class="bg-surface rounded-2xl p-8 shadow-lg border border-border" id="contact-form" action="https://formspree.io/f/mreonjzd" method="POST">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
             <div id="contact-fields" class="space-y-6">
               <div>
                 <label for="contact-name" class="block text-sm font-medium text-heading mb-2">Name *</label>
@@ -824,10 +826,20 @@ import Layout from '../layouts/Layout.astro';
       btn.textContent = 'Sending...';
       btn.disabled = true;
       try {
-        await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-      } catch (_) {}
-      document.getElementById('contact-fields')?.classList.add('hidden');
-      document.getElementById('contact-success')?.classList.remove('hidden');
+        const resp = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (resp.ok) {
+          document.getElementById('contact-fields')?.classList.add('hidden');
+          document.getElementById('contact-success')?.classList.remove('hidden');
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email us at beaufortlaundryfairy@gmail.com');
+        }
+      } catch (_) {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+        alert('Network error. Please check your connection and try again, or email us at beaufortlaundryfairy@gmail.com');
+      }
     });
 
     // Multi-step form
@@ -854,14 +866,15 @@ import Layout from '../layouts/Layout.astro';
       if (!d.value) { d.reportValidity(); return; }
       if (!t.value) { t.reportValidity(); return; }
       const s = document.getElementById('booking-summary')!;
-      const v = (id: string) => (document.getElementById(id) as HTMLInputElement).value;
+      const esc = (str: string) => { const d2 = document.createElement('div'); d2.textContent = str; return d2.innerHTML; };
+      const v = (id: string) => esc((document.getElementById(id) as HTMLInputElement).value);
       const bh = (document.getElementById('base-housing') as HTMLInputElement).checked;
-      const ins = (document.getElementById('instructions') as HTMLTextAreaElement).value;
+      const ins = esc((document.getElementById('instructions') as HTMLTextAreaElement).value);
       s.innerHTML = [
         ['Name', v('name')], ['Email', v('email')], ['Phone', v('phone')], ['Address', v('address')],
         ...(bh ? [['Base Housing', 'Yes']] : []),
-        ['Pickup Date', new Date(d.value + 'T00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' })],
-        ['Time Window', t.options[t.selectedIndex].text],
+        ['Pickup Date', esc(new Date(d.value + 'T00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' }))],
+        ['Time Window', esc(t.options[t.selectedIndex].text)],
         ...(ins ? [['Notes', ins]] : [])
       ].map(([k,val]) => `<div class="flex justify-between py-2 border-b border-border last:border-0"><span class="text-muted">${k}</span><span class="text-heading font-medium text-right max-w-[60%]">${val}</span></div>`).join('');
       showStep(2);
@@ -875,11 +888,21 @@ import Layout from '../layouts/Layout.astro';
       btn.textContent = 'Submitting...';
       btn.disabled = true;
       try {
-        await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-      } catch (_) {}
-      steps.forEach(s => s?.classList.add('hidden'));
-      document.querySelector('#book .bg-surface-alt')?.classList.add('hidden');
-      document.getElementById('booking-success')?.classList.remove('hidden');
+        const resp = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (resp.ok) {
+          steps.forEach(s => s?.classList.add('hidden'));
+          document.querySelector('#book .bg-surface-alt')?.classList.add('hidden');
+          document.getElementById('booking-success')?.classList.remove('hidden');
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email us at beaufortlaundryfairy@gmail.com');
+        }
+      } catch (_) {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+        alert('Network error. Please check your connection and try again, or email us at beaufortlaundryfairy@gmail.com');
+      }
     });
 
     // Mobile CTA
