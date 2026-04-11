@@ -56,9 +56,9 @@ const {
       const header = document.getElementById('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-          header?.classList.add('bg-surface/95', 'backdrop-blur-md', 'shadow-sm');
+          header?.classList.add('glass', 'shadow-sm', 'border-b', 'border-border/50');
         } else {
-          header?.classList.remove('bg-surface/95', 'backdrop-blur-md', 'shadow-sm');
+          header?.classList.remove('glass', 'shadow-sm', 'border-b', 'border-border/50');
         }
       });
     </script>
