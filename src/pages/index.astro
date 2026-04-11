@@ -267,21 +267,43 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Price Calculator -->
-      <div class="max-w-md mx-auto mt-12 reveal">
-        <div class="p-6 bg-surface-alt rounded-2xl border border-border">
-          <h4 class="text-sm font-semibold text-heading uppercase tracking-wide mb-4">Estimate Your Cost</h4>
-          <div class="space-y-4">
+      <div class="max-w-lg mx-auto mt-12 reveal">
+        <div class="p-6 sm:p-8 bg-surface-alt rounded-2xl border border-border">
+          <h4 class="text-sm font-semibold text-heading uppercase tracking-wide mb-5">Estimate Your Cost</h4>
+          <div class="space-y-5">
+            <!-- Speed selector -->
             <div>
-              <label for="calc-service" class="block text-sm text-body mb-2">Service</label>
-              <select id="calc-service" class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-heading text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
-                <option value="1.85">48-Hour Return — $1.85/lb (pickup & delivery)</option>
-                <option value="2.25" selected>24-Hour Return — $2.25/lb (pickup & delivery)</option>
-                <option value="2.85">Same-Day Return — $2.85/lb (pickup & delivery)</option>
-                <option value="1.55">48-Hour Return — $1.55/lb (drop-off)</option>
-                <option value="1.95">24-Hour Return — $1.95/lb (drop-off)</option>
-                <option value="2.55">Same-Day Return — $2.55/lb (drop-off)</option>
-              </select>
+              <p class="text-sm text-body mb-3">Turnaround time</p>
+              <div class="grid grid-cols-3 gap-2" id="calc-speed-group">
+                <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-body hover:border-primary/40 transition-all duration-200 text-center" data-pickup="1.85" data-dropoff="1.55">
+                  <span class="block font-bold text-heading">48hr</span>
+                  <span class="block text-xs text-muted mt-0.5 calc-speed-price">$1.85/lb</span>
+                </button>
+                <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-primary bg-primary/5 text-sm font-medium text-primary transition-all duration-200 text-center" data-pickup="2.25" data-dropoff="1.95">
+                  <span class="block font-bold">24hr</span>
+                  <span class="block text-xs mt-0.5 calc-speed-price">$2.25/lb</span>
+                </button>
+                <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-body hover:border-primary/40 transition-all duration-200 text-center" data-pickup="2.85" data-dropoff="2.55">
+                  <span class="block font-bold text-heading">Same day</span>
+                  <span class="block text-xs text-muted mt-0.5 calc-speed-price">$2.85/lb</span>
+                </button>
+              </div>
             </div>
+            <!-- Type selector -->
+            <div>
+              <p class="text-sm text-body mb-3">Service type</p>
+              <div class="grid grid-cols-2 gap-2" id="calc-type-group">
+                <button type="button" class="calc-type-btn px-3 py-2.5 rounded-xl border-2 border-primary bg-primary/5 text-sm font-medium text-primary transition-all duration-200 text-center" data-type="pickup">
+                  <span class="block font-bold">Pickup & Delivery</span>
+                  <span class="block text-xs mt-0.5">We come to you</span>
+                </button>
+                <button type="button" class="calc-type-btn px-3 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-body hover:border-primary/40 transition-all duration-200 text-center" data-type="dropoff">
+                  <span class="block font-bold text-heading">Drop-Off</span>
+                  <span class="block text-xs text-muted mt-0.5">Save more</span>
+                </button>
+              </div>
+            </div>
+            <!-- Weight slider -->
             <div>
               <div class="flex justify-between text-sm mb-2">
                 <span class="text-body">Pounds of laundry</span>
@@ -293,9 +315,13 @@ import Layout from '../layouts/Layout.astro';
                 <span>60 lbs</span>
               </div>
             </div>
-            <div class="flex items-center justify-between pt-4 border-t border-border">
-              <span class="text-body font-medium">Estimated Total</span>
-              <span id="price-display" class="text-3xl font-heading font-bold text-primary">$45.00</span>
+            <!-- Total -->
+            <div class="flex items-center justify-between pt-5 border-t border-border">
+              <div>
+                <span class="text-body font-medium block">Estimated Total</span>
+                <span class="text-xs text-muted" id="calc-rate-label">24hr pickup & delivery</span>
+              </div>
+              <span id="price-display" class="text-4xl font-heading font-bold text-primary">$45.00</span>
             </div>
           </div>
         </div>
@@ -683,18 +709,64 @@ import Layout from '../layouts/Layout.astro';
 
     // Price Calculator
     const slider = document.getElementById('weight-slider') as HTMLInputElement;
-    const calcService = document.getElementById('calc-service') as HTMLSelectElement;
     const weightDisplay = document.getElementById('weight-display');
     const priceDisplay = document.getElementById('price-display');
+    const calcRateLabel = document.getElementById('calc-rate-label');
+    const speedBtns = document.querySelectorAll('.calc-speed-btn');
+    const typeBtns = document.querySelectorAll('.calc-type-btn');
+    let calcType = 'pickup';
+    let calcSpeed = document.querySelector('.calc-speed-btn.border-primary') as HTMLElement;
+
+    function styleBtn(btn: Element, active: boolean, group: NodeListOf<Element>) {
+      if (active) {
+        btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+        btn.classList.remove('border-border', 'text-body');
+        btn.querySelectorAll('.text-heading').forEach(el => el.classList.remove('text-heading'));
+        btn.querySelectorAll('.text-muted').forEach(el => el.classList.remove('text-muted'));
+      } else {
+        btn.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+        btn.classList.add('border-border', 'text-body');
+        const bold = btn.querySelector('.font-bold');
+        if (bold && !bold.classList.contains('text-heading')) bold.classList.add('text-heading');
+        const sub = btn.querySelector('.text-xs');
+        if (sub && !sub.classList.contains('text-muted')) sub.classList.add('text-muted');
+      }
+    }
 
     function updateCalc() {
       const w = parseInt(slider.value);
-      const rate = parseFloat(calcService.value);
+      const rate = parseFloat(calcType === 'pickup' ? calcSpeed.dataset.pickup! : calcSpeed.dataset.dropoff!);
       weightDisplay!.textContent = `${w} lbs`;
       priceDisplay!.textContent = `$${(w * rate).toFixed(2)}`;
+      const speedLabel = calcSpeed.querySelector('.font-bold')!.textContent!.toLowerCase();
+      calcRateLabel!.textContent = `${speedLabel} ${calcType === 'pickup' ? 'pickup & delivery' : 'drop-off'}`;
+      // Update speed price labels based on type
+      speedBtns.forEach(btn => {
+        const priceEl = btn.querySelector('.calc-speed-price');
+        if (priceEl) {
+          const p = calcType === 'pickup' ? (btn as HTMLElement).dataset.pickup : (btn as HTMLElement).dataset.dropoff;
+          priceEl.textContent = `$${parseFloat(p!).toFixed(2)}/lb`;
+        }
+      });
     }
+
+    speedBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        speedBtns.forEach(b => styleBtn(b, b === btn, speedBtns));
+        calcSpeed = btn as HTMLElement;
+        updateCalc();
+      });
+    });
+
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => styleBtn(b, b === btn, typeBtns));
+        calcType = (btn as HTMLElement).dataset.type!;
+        updateCalc();
+      });
+    });
+
     slider?.addEventListener('input', updateCalc);
-    calcService?.addEventListener('change', updateCalc);
 
     // FAQ Accordion
     const faqs = [
