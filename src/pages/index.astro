@@ -117,10 +117,10 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center mb-16 reveal">
         <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Simple & Easy</p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">How It Works</h2>
-        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Getting your laundry done has never been easier. Three simple steps and you're free to enjoy your day.</p>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">No upfront payment needed. Just schedule a pickup and we handle the rest — you only pay after we've weighed your laundry.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
-        <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 border-t-2 border-dashed border-primary/20"></div>
+      <div class="grid md:grid-cols-4 gap-6 lg:gap-8 relative">
+        <div class="hidden md:block absolute top-16 left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-primary/20"></div>
         <div class="reveal reveal-delay-1 text-center relative">
           <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -128,25 +128,35 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
             <span class="text-accent font-accent text-2xl font-bold">Step 1</span>
             <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">Schedule a Pickup</h3>
-            <p class="text-body">Choose a day and time that works for you. Leave your laundry bag on the porch — we'll grab it.</p>
+            <p class="text-body">Book online — no payment needed upfront. Leave your laundry bag on the porch and we'll grab it.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-2 text-center relative">
           <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"/></svg>
           </div>
           <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
             <span class="text-accent font-accent text-2xl font-bold">Step 2</span>
-            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Wash & Fold</h3>
-            <p class="text-body">We weigh your laundry, then wash, dry, and fold everything with care using quality products.</p>
+            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Weigh & Invoice</h3>
+            <p class="text-body">We weigh your laundry and send you an invoice by email at $1.75/lb. You pay online before we wash.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-3 text-center relative">
           <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
           </div>
           <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
             <span class="text-accent font-accent text-2xl font-bold">Step 3</span>
+            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Wash & Fold</h3>
+            <p class="text-body">Once paid, we wash, dry, and fold everything with care using quality detergents.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-4 text-center relative">
+          <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+            <span class="text-accent font-accent text-2xl font-bold">Step 4</span>
             <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Deliver It Back</h3>
             <p class="text-body">Fresh, clean, and perfectly folded laundry returned right to your porch. It's like magic!</p>
           </div>
@@ -324,7 +334,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center mb-12 reveal">
         <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Ready to Get Started?</p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Schedule Your Pickup</h2>
-        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Fill out the form below and we'll confirm your pickup time. It's that easy!</p>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Fill out the form below and we'll confirm your pickup time. No payment needed now — we'll send an invoice after we weigh your laundry.</p>
       </div>
       <div class="reveal">
         <div class="bg-surface rounded-3xl shadow-xl border border-border overflow-hidden">
@@ -557,14 +567,14 @@ import Layout from '../layouts/Layout.astro';
 
     // FAQ Accordion
     const faqs = [
-      { q: "How does the service work?", a: "It's simple! Schedule a pickup online, leave your laundry on the porch, and we'll pick it up, wash, dry, fold, and deliver it back to your doorstep — usually within 24 hours." },
+      { q: "How does the service work?", a: "Schedule a pickup online (no payment needed). Leave your laundry on the porch and we'll pick it up. We weigh it and send you an invoice by email. Once you pay online, we wash, dry, fold, and deliver it back to your doorstep — usually within 24 hours." },
       { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
       { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
-      { q: "How is pricing determined?", a: "Your laundry is weighed after pickup and invoiced at $1.75 per pound with a 15 lb minimum. You can estimate your cost by weighing your laundry at home — a full kitchen trash bag is typically around 15-20 lbs." },
+      { q: "How is pricing determined?", a: "After we pick up your laundry, we weigh it and send you an invoice at $1.75 per pound (15 lb minimum). You don't pay anything upfront — you'll get an email with your exact total and a link to pay online before we start washing. A full kitchen trash bag is typically around 15-20 lbs." },
       { q: "What area do you serve?", a: "We serve the Beaufort, SC area including zip codes 29901 through 29907. This includes MCAS Beaufort base housing — we have base access!" },
       { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
       { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime via your confirmation email or by contacting us directly. We appreciate at least 12 hours notice when possible." },
-      { q: "How do I pay?", a: "After we weigh your laundry, we'll send you an invoice via email with a secure payment link. You can pay with a credit/debit card or bank transfer." }
+      { q: "How do I pay?", a: "No payment is needed when you book. After we pick up and weigh your laundry, we send you an invoice via email with a secure payment link. You can pay with a credit/debit card or bank transfer. We start washing once payment is received." }
     ];
     const fc = document.getElementById('faq-container')!;
     faqs.forEach(faq => {
