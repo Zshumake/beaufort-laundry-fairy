@@ -1,0 +1,644 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-lg font-bold text-heading font-heading">Laundry</span>
+            <span class="text-lg font-bold text-primary font-accent relative"> Fairy</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#how-it-works" class="text-sm font-medium text-body hover:text-primary transition-colors">How It Works</a>
+          <a href="#pricing" class="text-sm font-medium text-body hover:text-primary transition-colors">Pricing</a>
+          <a href="#about" class="text-sm font-medium text-body hover:text-primary transition-colors">About</a>
+          <a href="#faq" class="text-sm font-medium text-body hover:text-primary transition-colors">FAQ</a>
+          <a href="#contact" class="text-sm font-medium text-body hover:text-primary transition-colors">Contact</a>
+          <a href="#book" class="inline-flex items-center px-5 py-2.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg text-sm">
+            Schedule Pickup
+          </a>
+        </nav>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-heading" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-3 bg-surface rounded-2xl p-4 shadow-lg border border-border">
+          <a href="#how-it-works" class="text-body hover:text-primary py-2 font-medium transition-colors">How It Works</a>
+          <a href="#pricing" class="text-body hover:text-primary py-2 font-medium transition-colors">Pricing</a>
+          <a href="#about" class="text-body hover:text-primary py-2 font-medium transition-colors">About</a>
+          <a href="#faq" class="text-body hover:text-primary py-2 font-medium transition-colors">FAQ</a>
+          <a href="#contact" class="text-body hover:text-primary py-2 font-medium transition-colors">Contact</a>
+          <a href="#book" class="inline-flex items-center justify-center px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full transition-colors text-sm">
+            Schedule Pickup
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-br from-surface via-surface to-secondary/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal">
+          <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-4">Free Pickup & Delivery in Beaufort, SC</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-heading leading-tight mb-6">
+            Fresh Laundry,<br />
+            <span class="text-primary">Delivered to Your Door</span>
+          </h1>
+          <p class="text-lg text-body leading-relaxed mb-8 max-w-xl">
+            We pick up your dirty laundry, wash, dry, and fold it with care — then bring it right back to your porch. Serving Beaufort zip codes 29901–29907 including MCAS Beaufort base housing.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <a href="#book" class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.02] hover:shadow-xl text-lg gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Schedule a Pickup
+            </a>
+            <a href="#how-it-works" class="inline-flex items-center justify-center px-8 py-4 border-2 border-primary/20 text-primary font-semibold rounded-full hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 text-lg gap-2">
+              See How It Works
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </a>
+          </div>
+          <div class="flex flex-wrap gap-6 text-sm text-muted">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>5-Star Reviews</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <span>Military Family Owned</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Free Pickup & Delivery</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-secondary">
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+            <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80" alt="Fresh folded laundry in a bright, clean setting" class="w-full h-full object-cover" loading="eager" />
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-surface rounded-2xl shadow-xl p-4 border border-border">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-heading text-sm">24-Hour Turnaround</p>
+                <p class="text-muted text-xs">Fresh & folded, fast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section id="how-it-works" class="py-20 sm:py-28 bg-surface-alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Simple & Easy</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">How It Works</h2>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Getting your laundry done has never been easier. Three simple steps and you're free to enjoy your day.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
+        <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 border-t-2 border-dashed border-primary/20"></div>
+        <div class="reveal reveal-delay-1 text-center relative">
+          <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+            <span class="text-accent font-accent text-2xl font-bold">Step 1</span>
+            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">Schedule a Pickup</h3>
+            <p class="text-body">Choose a day and time that works for you. Leave your laundry bag on the porch — we'll grab it.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 text-center relative">
+          <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+            <span class="text-accent font-accent text-2xl font-bold">Step 2</span>
+            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Wash & Fold</h3>
+            <p class="text-body">We weigh your laundry, then wash, dry, and fold everything with care using quality products.</p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3 text-center relative">
+          <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg relative z-10">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+            <span class="text-accent font-accent text-2xl font-bold">Step 3</span>
+            <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Deliver It Back</h3>
+            <p class="text-body">Fresh, clean, and perfectly folded laundry returned right to your porch. It's like magic!</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-12 reveal">
+        <a href="#book" class="inline-flex items-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.02] hover:shadow-xl text-lg gap-2">
+          Schedule Your First Pickup
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section id="pricing" class="py-20 sm:py-28 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Transparent Pricing</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Simple, Honest Pricing</h2>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">No hidden fees. We weigh your laundry after pickup and send you an invoice before we start washing.</p>
+      </div>
+      <div class="max-w-lg mx-auto reveal">
+        <div class="bg-surface rounded-3xl shadow-xl border border-border overflow-hidden">
+          <div class="bg-gradient-to-r from-primary to-primary-light p-8 text-center text-white">
+            <h3 class="text-xl font-heading font-bold mb-2">Wash, Dry & Fold</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-6xl font-heading font-bold">$1.75</span>
+              <span class="text-xl opacity-80">/ lb</span>
+            </div>
+            <p class="mt-2 opacity-80">15 lb minimum per order</p>
+          </div>
+          <div class="p-8">
+            <ul class="space-y-4">
+              {['Free porch pickup', 'Free delivery', 'Weighed after pickup — no surprises', '24-hour turnaround', 'Quality detergents (free & clear available)', 'Kids & baby clothes welcome'].map((item) => (
+                <li class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-8 p-6 bg-surface-alt rounded-2xl border border-border">
+              <h4 class="text-sm font-semibold text-heading uppercase tracking-wide mb-4">Estimate Your Cost</h4>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span class="text-body">Pounds of laundry</span>
+                    <span id="weight-display" class="font-bold text-heading">20 lbs</span>
+                  </div>
+                  <input type="range" id="weight-slider" min="15" max="60" value="20" step="1" class="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary" />
+                  <div class="flex justify-between text-xs text-muted mt-1">
+                    <span>15 lbs</span>
+                    <span>60 lbs</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-border">
+                  <span class="text-body font-medium">Estimated Total</span>
+                  <span id="price-display" class="text-3xl font-heading font-bold text-primary">$35.00</span>
+                </div>
+              </div>
+            </div>
+            <a href="#book" class="mt-8 w-full inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.02] hover:shadow-lg text-lg">
+              Schedule a Pickup
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about" class="py-20 sm:py-28 bg-secondary/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <div class="rounded-3xl overflow-hidden shadow-xl aspect-[4/3] bg-secondary">
+            <img src="https://images.unsplash.com/photo-1517677129300-07b130802f46?w=800&q=80" alt="Warm, welcoming home environment" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+        <div class="reveal order-1 lg:order-2">
+          <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Meet Your Laundry Fairy</p>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-heading mb-6">A Local Mom-Run Business You Can Trust</h2>
+          <div class="space-y-4 text-body text-lg leading-relaxed">
+            <p>Hi, I'm Courtney! I'm a stay-at-home mom in the Shadow Moss neighborhood of Beaufort. I started this laundry service to support my family while being home with my two daughters.</p>
+            <p>I genuinely enjoy doing laundry — there's something satisfying about fresh, clean clothes and everything folded just right! My husband is stationed at MCAS Beaufort, so I have base access and love serving our military families.</p>
+            <p>I'm all about quick, clear communication and treating your clothes like my own. Thanks for supporting a local, mom-run business!</p>
+          </div>
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            {[
+              { icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6', label: 'Military Spouse Owned' },
+              { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z', label: 'Beaufort Local' },
+              { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', label: 'Base Access' },
+              { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', label: 'Family Friendly' }
+            ].map(({ icon, label }) => (
+              <div class="flex items-center gap-3 bg-surface rounded-xl p-4 shadow-sm border border-border">
+                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon}/></svg>
+                </div>
+                <span class="text-sm font-medium text-heading">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="py-20 sm:py-28 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">What People Say</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Loved by Beaufort Families</h2>
+      </div>
+      <div class="flex flex-wrap justify-center gap-8 sm:gap-16 mb-16 reveal">
+        {[{ val: '50+', label: 'Families Served' }, { val: '5.0', label: 'Average Rating' }, { val: '24hr', label: 'Turnaround' }].map(({ val, label }) => (
+          <div class="text-center">
+            <p class="text-4xl font-heading font-bold text-primary">{val}</p>
+            <p class="text-sm text-muted mt-1">{label}</p>
+          </div>
+        ))}
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { text: "As a military spouse with three kids, this service has been a lifesaver. Clothes come back perfectly folded every single time. Courtney is amazing!", name: "Sarah M.", role: "Marine spouse, base housing" },
+          { text: "So convenient! I just leave my bag on the porch and it comes back clean and folded the next day. The pricing is fair and the communication is great.", name: "Jennifer T.", role: "Shadow Moss resident" },
+          { text: "I work long hours and laundry was always piling up. Now I have one less thing to worry about. Best decision I've made! Highly recommend to anyone in Beaufort.", name: "David R.", role: "Beaufort, SC" }
+        ].map(({ text, name, role }, i) => (
+          <div class={`reveal reveal-delay-${i + 1} bg-surface-alt rounded-2xl p-8 border-l-4 border-primary hover:shadow-lg transition-shadow duration-300`}>
+            <div class="flex gap-1 mb-4">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <p class="text-body italic leading-relaxed mb-6">"{text}"</p>
+            <div>
+              <p class="font-bold text-heading text-sm">{name}</p>
+              <p class="text-muted text-xs">{role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICE AREA ========== -->
+  <section class="py-16 bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center reveal">
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold mb-4">Serving the Beaufort, SC Area</h2>
+        <p class="text-white/80 mb-6 max-w-xl mx-auto">Free pickup and delivery for the following zip codes, including MCAS Beaufort base housing.</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {['29901','29902','29903','29904','29905','29906','29907'].map((zip) => (
+            <span class="px-4 py-2 bg-white/10 rounded-full text-sm font-medium border border-white/20">{zip}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="py-20 sm:py-28 bg-surface-alt">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Got Questions?</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Frequently Asked Questions</h2>
+      </div>
+      <div class="space-y-4 reveal" id="faq-container"></div>
+    </div>
+  </section>
+
+  <!-- ========== BOOKING ========== -->
+  <section id="book" class="py-20 sm:py-28 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Ready to Get Started?</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Schedule Your Pickup</h2>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Fill out the form below and we'll confirm your pickup time. It's that easy!</p>
+      </div>
+      <div class="reveal">
+        <div class="bg-surface rounded-3xl shadow-xl border border-border overflow-hidden">
+          <div class="bg-surface-alt px-8 py-4 border-b border-border">
+            <div class="flex items-center justify-between max-w-md mx-auto">
+              <div class="flex items-center gap-2" id="si-1">
+                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</div>
+                <span class="text-sm font-medium text-heading hidden sm:inline">Details</span>
+              </div>
+              <div class="h-0.5 flex-1 mx-3 bg-border" id="sl-1"></div>
+              <div class="flex items-center gap-2" id="si-2">
+                <div class="w-8 h-8 rounded-full bg-border text-muted flex items-center justify-center text-sm font-bold">2</div>
+                <span class="text-sm font-medium text-muted hidden sm:inline">Schedule</span>
+              </div>
+              <div class="h-0.5 flex-1 mx-3 bg-border" id="sl-2"></div>
+              <div class="flex items-center gap-2" id="si-3">
+                <div class="w-8 h-8 rounded-full bg-border text-muted flex items-center justify-center text-sm font-bold">3</div>
+                <span class="text-sm font-medium text-muted hidden sm:inline">Confirm</span>
+              </div>
+            </div>
+          </div>
+          <form id="booking-form" class="p-8">
+            <div id="step-1" class="space-y-6">
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-heading mb-2">Full Name *</label>
+                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="Your name" />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-heading mb-2">Email *</label>
+                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="you@email.com" />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-heading mb-2">Phone *</label>
+                  <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="(843) 555-0123" />
+                </div>
+                <div>
+                  <label for="zip" class="block text-sm font-medium text-heading mb-2">Zip Code *</label>
+                  <input type="text" id="zip" name="zip" required pattern="2990[1-7]" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="29901" />
+                  <p class="text-xs text-muted mt-1">We serve 29901-29907</p>
+                </div>
+              </div>
+              <div>
+                <label for="address" class="block text-sm font-medium text-heading mb-2">Pickup Address *</label>
+                <input type="text" id="address" name="address" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="123 Main St, Beaufort SC" />
+              </div>
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="base-housing" name="base_housing" class="w-5 h-5 rounded border-border text-primary focus:ring-primary accent-primary" />
+                <label for="base-housing" class="text-sm text-body">I live on MCAS Beaufort base housing</label>
+              </div>
+              <button type="button" id="next-1" class="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all duration-200 hover:shadow-lg text-lg">Next: Choose a Time</button>
+            </div>
+            <div id="step-2" class="hidden space-y-6">
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="pickup-date" class="block text-sm font-medium text-heading mb-2">Preferred Pickup Date *</label>
+                  <input type="date" id="pickup-date" name="pickup_date" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" />
+                </div>
+                <div>
+                  <label for="pickup-time" class="block text-sm font-medium text-heading mb-2">Time Window *</label>
+                  <select id="pickup-time" name="pickup_time" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors">
+                    <option value="">Select a time...</option>
+                    <option value="morning">Morning (8am - 12pm)</option>
+                    <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                    <option value="evening">Evening (4pm - 7pm)</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="instructions" class="block text-sm font-medium text-heading mb-2">Special Instructions</label>
+                <textarea id="instructions" name="instructions" rows="3" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none" placeholder="e.g., Leave bag on the front porch, use free & clear detergent, baby clothes included..."></textarea>
+              </div>
+              <div class="flex gap-4">
+                <button type="button" id="back-2" class="flex-1 px-8 py-4 border-2 border-border text-body font-semibold rounded-full hover:bg-surface-alt transition-colors text-lg">Back</button>
+                <button type="button" id="next-2" class="flex-1 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all duration-200 hover:shadow-lg text-lg">Review & Confirm</button>
+              </div>
+            </div>
+            <div id="step-3" class="hidden space-y-6">
+              <div class="bg-surface-alt rounded-2xl p-6 border border-border">
+                <h3 class="font-heading font-bold text-heading text-lg mb-4">Pickup Summary</h3>
+                <div class="space-y-3 text-sm" id="booking-summary"></div>
+              </div>
+              <div class="flex gap-4">
+                <button type="button" id="back-3" class="flex-1 px-8 py-4 border-2 border-border text-body font-semibold rounded-full hover:bg-surface-alt transition-colors text-lg">Back</button>
+                <button type="submit" class="flex-1 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:shadow-lg text-lg">Confirm Pickup</button>
+              </div>
+            </div>
+            <div id="booking-success" class="hidden text-center py-8">
+              <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <h3 class="text-2xl font-heading font-bold text-heading mb-2">Pickup Scheduled!</h3>
+              <p class="text-body max-w-md mx-auto">We'll send you a confirmation email shortly. If you have any questions, reach out to us anytime.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="py-20 sm:py-28 bg-surface-alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div class="reveal">
+          <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Get in Touch</p>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-heading mb-6">Questions? We'd Love to Hear From You</h2>
+          <p class="text-body text-lg mb-8">Have a question or need more info? Drop us a message and we'll get back to you ASAP!</p>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm text-muted">Email us</p>
+                <a href="mailto:beaufortlaundryfairy@gmail.com" class="text-heading font-medium hover:text-primary transition-colors">beaufortlaundryfairy@gmail.com</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm text-muted">Service Area</p>
+                <p class="text-heading font-medium">Beaufort, SC 29901-29907</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </div>
+              <div>
+                <p class="text-sm text-muted">Follow us</p>
+                <a href="https://facebook.com/beaufortlaundryfairy" target="_blank" rel="noopener" class="text-heading font-medium hover:text-primary transition-colors">Facebook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <form class="bg-surface rounded-2xl p-8 shadow-lg border border-border" id="contact-form">
+            <div class="space-y-6">
+              <div>
+                <label for="contact-name" class="block text-sm font-medium text-heading mb-2">Name *</label>
+                <input type="text" id="contact-name" name="name" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="Your name" />
+              </div>
+              <div>
+                <label for="contact-email" class="block text-sm font-medium text-heading mb-2">Email *</label>
+                <input type="email" id="contact-email" name="email" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="you@email.com" />
+              </div>
+              <div>
+                <label for="contact-message" class="block text-sm font-medium text-heading mb-2">Message *</label>
+                <textarea id="contact-message" name="message" required rows="5" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none" placeholder="How can we help you?"></textarea>
+              </div>
+              <button type="submit" class="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all duration-200 hover:shadow-lg text-lg">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-primary-dark text-white/70 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div class="sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+            </div>
+            <div>
+              <span class="text-lg font-bold text-white font-heading">Laundry</span>
+              <span class="text-lg font-bold text-primary-light font-accent"> Fairy</span>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed">Professional wash, dry & fold laundry service with free porch pickup and delivery in Beaufort, SC.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Service Area</h4>
+          <ul class="space-y-2 text-sm">
+            <li>Beaufort, SC</li>
+            <li>Zip codes 29901-29907</li>
+            <li>MCAS Beaufort base housing</li>
+            <li>Shadow Moss & surrounding</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="mailto:beaufortlaundryfairy@gmail.com" class="hover:text-white transition-colors">beaufortlaundryfairy@gmail.com</a></li>
+            <li><a href="https://facebook.com/beaufortlaundryfairy" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/10 text-center text-xs">
+        <p>&copy; 2026 Beaufort Laundry Fairy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky CTA -->
+  <div id="mobile-cta" class="fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-border p-4 md:hidden translate-y-full transition-transform duration-300 z-40">
+    <a href="#book" class="w-full inline-flex items-center justify-center px-6 py-3.5 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-colors text-base gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Schedule a Pickup
+    </a>
+  </div>
+
+  <script>
+    // Price Calculator
+    const slider = document.getElementById('weight-slider') as HTMLInputElement;
+    const weightDisplay = document.getElementById('weight-display');
+    const priceDisplay = document.getElementById('price-display');
+    slider?.addEventListener('input', () => {
+      const w = parseInt(slider.value);
+      weightDisplay!.textContent = `${w} lbs`;
+      priceDisplay!.textContent = `$${(w * 1.75).toFixed(2)}`;
+    });
+
+    // FAQ Accordion
+    const faqs = [
+      { q: "How does the service work?", a: "It's simple! Schedule a pickup online, leave your laundry on the porch, and we'll pick it up, wash, dry, fold, and deliver it back to your doorstep — usually within 24 hours." },
+      { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
+      { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
+      { q: "How is pricing determined?", a: "Your laundry is weighed after pickup and invoiced at $1.75 per pound with a 15 lb minimum. You can estimate your cost by weighing your laundry at home — a full kitchen trash bag is typically around 15-20 lbs." },
+      { q: "What area do you serve?", a: "We serve the Beaufort, SC area including zip codes 29901 through 29907. This includes MCAS Beaufort base housing — we have base access!" },
+      { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
+      { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime via your confirmation email or by contacting us directly. We appreciate at least 12 hours notice when possible." },
+      { q: "How do I pay?", a: "After we weigh your laundry, we'll send you an invoice via email with a secure payment link. You can pay with a credit/debit card or bank transfer." }
+    ];
+    const fc = document.getElementById('faq-container')!;
+    faqs.forEach(faq => {
+      const d = document.createElement('div');
+      d.className = 'bg-surface rounded-2xl border border-border overflow-hidden';
+      d.innerHTML = `<button class="faq-btn w-full flex items-center justify-between p-6 text-left hover:bg-surface-alt/50 transition-colors" aria-expanded="false"><span class="text-heading font-semibold text-base pr-4">${faq.q}</span><svg class="w-5 h-5 text-muted shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-ans max-h-0 overflow-hidden transition-all duration-300"><p class="px-6 pb-6 text-body leading-relaxed">${faq.a}</p></div>`;
+      fc.appendChild(d);
+    });
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ans = btn.nextElementSibling as HTMLElement;
+        const icon = btn.querySelector('svg')!;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-btn').forEach(o => { if (o !== btn) { o.setAttribute('aria-expanded','false'); (o.nextElementSibling as HTMLElement).style.maxHeight='0'; o.querySelector('svg')!.classList.remove('rotate-180'); }});
+        btn.setAttribute('aria-expanded', String(!open));
+        if (!open) { ans.style.maxHeight = ans.scrollHeight + 'px'; icon.classList.add('rotate-180'); }
+        else { ans.style.maxHeight = '0'; icon.classList.remove('rotate-180'); }
+      });
+    });
+
+    // Multi-step form
+    const steps = [document.getElementById('step-1'), document.getElementById('step-2'), document.getElementById('step-3')];
+    function showStep(n: number) {
+      steps.forEach((s, i) => s?.classList.toggle('hidden', i !== n));
+      for (let i = 1; i <= 3; i++) {
+        const ci = document.querySelector(`#si-${i} div`)!;
+        const cl = document.querySelector(`#si-${i} span`);
+        if (i <= n + 1) { ci.classList.remove('bg-border','text-muted'); ci.classList.add('bg-primary','text-white'); cl?.classList.remove('text-muted'); cl?.classList.add('text-heading'); }
+        else { ci.classList.add('bg-border','text-muted'); ci.classList.remove('bg-primary','text-white'); cl?.classList.add('text-muted'); cl?.classList.remove('text-heading'); }
+        const line = document.getElementById(`sl-${i}`);
+        if (line) { if (i < n + 1) { line.classList.remove('bg-border'); line.classList.add('bg-primary'); } else { line.classList.add('bg-border'); line.classList.remove('bg-primary'); }}
+      }
+    }
+    document.getElementById('next-1')?.addEventListener('click', () => {
+      let valid = true;
+      ['name','email','phone','zip','address'].forEach(id => { const el = document.getElementById(id) as HTMLInputElement; if (!el.checkValidity()) { el.reportValidity(); valid = false; }});
+      if (valid) showStep(1);
+    });
+    document.getElementById('next-2')?.addEventListener('click', () => {
+      const d = document.getElementById('pickup-date') as HTMLInputElement;
+      const t = document.getElementById('pickup-time') as HTMLSelectElement;
+      if (!d.value) { d.reportValidity(); return; }
+      if (!t.value) { t.reportValidity(); return; }
+      const s = document.getElementById('booking-summary')!;
+      const v = (id: string) => (document.getElementById(id) as HTMLInputElement).value;
+      const bh = (document.getElementById('base-housing') as HTMLInputElement).checked;
+      const ins = (document.getElementById('instructions') as HTMLTextAreaElement).value;
+      s.innerHTML = [
+        ['Name', v('name')], ['Email', v('email')], ['Phone', v('phone')], ['Address', v('address')],
+        ...(bh ? [['Base Housing', 'Yes']] : []),
+        ['Pickup Date', new Date(d.value + 'T00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' })],
+        ['Time Window', t.options[t.selectedIndex].text],
+        ...(ins ? [['Notes', ins]] : [])
+      ].map(([k,val]) => `<div class="flex justify-between py-2 border-b border-border last:border-0"><span class="text-muted">${k}</span><span class="text-heading font-medium text-right max-w-[60%]">${val}</span></div>`).join('');
+      showStep(2);
+    });
+    document.getElementById('back-2')?.addEventListener('click', () => showStep(0));
+    document.getElementById('back-3')?.addEventListener('click', () => showStep(1));
+    document.getElementById('booking-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      steps.forEach(s => s?.classList.add('hidden'));
+      document.querySelector('#book .bg-surface-alt')?.classList.add('hidden');
+      document.getElementById('booking-success')?.classList.remove('hidden');
+    });
+
+    // Mobile CTA
+    const mobileCta = document.getElementById('mobile-cta');
+    const hero = document.querySelector('section');
+    new IntersectionObserver(([e]) => {
+      mobileCta?.classList.toggle('translate-y-full', e.isIntersecting);
+    }, { threshold: 0.1 }).observe(hero!);
+
+    // Min date for pickup
+    const pd = document.getElementById('pickup-date') as HTMLInputElement;
+    if (pd) { const t = new Date(); t.setDate(t.getDate() + 1); pd.min = t.toISOString().split('T')[0]; }
+  </script>
+</Layout>

@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Beaufort Laundry Fairy | Wash, Dry & Fold with Free Pickup & Delivery',
+  description = 'Professional wash, dry, and fold laundry service in Beaufort, SC. Free porch pickup and delivery. Serving zip codes 29901-29907 including MCAS Beaufort base housing.'
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&family=Caveat:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="overflow-x-hidden">
+    <slot />
+    <script>
+      // Scroll reveal observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on link click
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu?.classList.add('hidden');
+        });
+      });
+
+      // Sticky header background on scroll
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header?.classList.add('bg-surface/95', 'backdrop-blur-md', 'shadow-sm');
+        } else {
+          header?.classList.remove('bg-surface/95', 'backdrop-blur-md', 'shadow-sm');
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2B7A78;
+  --color-primary-light: #3AAFA9;
+  --color-primary-dark: #17252A;
+  --color-secondary: #DEF2F1;
+  --color-accent: #F4A261;
+  --color-accent-hover: #E76F51;
+  --color-surface: #FEFFFF;
+  --color-surface-alt: #F7F9FA;
+  --color-border: #E8EDEF;
+  --color-muted: #8E9FAA;
+  --color-body: #3D5A6E;
+  --color-heading: #1A2B3A;
+  --color-success: #4CAF50;
+  --color-warning: #FFC107;
+  --color-error: #E53935;
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Caveat', cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-body);
+    background-color: var(--color-surface);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+  }
+
+  ::selection {
+    background-color: var(--color-primary-light);
+    color: white;
+  }
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Sparkle animation for brand name */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.sparkle::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+  top: -4px;
+  right: -8px;
+}
