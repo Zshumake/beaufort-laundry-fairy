@@ -381,18 +381,19 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Loved by Beaufort Families</h2>
       </div>
       <div class="flex flex-wrap justify-center gap-8 sm:gap-16 mb-16 reveal">
-        {[{ val: '50+', label: 'Families Served' }, { val: '5.0', label: 'Average Rating' }, { val: '3', label: 'Speed Options' }].map(({ val, label }) => (
+        {[{ val: '11+', label: 'Google Reviews' }, { val: '5.0', label: 'Average Rating' }, { val: '3', label: 'Speed Options' }].map(({ val, label }) => (
           <div class="text-center">
             <p class="text-4xl font-heading font-bold text-primary">{val}</p>
             <p class="text-sm text-muted mt-1">{label}</p>
           </div>
         ))}
       </div>
-      <div class="mobile-carousel md:grid md:grid-cols-3 gap-8">
+      <div class="mobile-carousel md:grid md:grid-cols-4 gap-6">
         {[
-          { text: "As a military spouse with three kids, this service has been a lifesaver. Clothes come back perfectly folded every single time. Courtney is amazing!", name: "Sarah M.", role: "Marine spouse, base housing" },
-          { text: "So convenient! I just leave my bag on the porch and it comes back clean and folded the next day. The pricing is fair and the communication is great.", name: "Jennifer T.", role: "Shadow Moss resident" },
-          { text: "I work long hours and laundry was always piling up. Now I have one less thing to worry about. Best decision I've made! Highly recommend to anyone in the area.", name: "David R.", role: "Beaufort County, SC" }
+          { text: "The Laundry Fairy does an amazing job! She is prompt, professional and the service has exceeded my expectations. This has truly been a life saver when the laundry got overwhelming due to work, two kids and my spouse suffering from health problems.", name: "Liz R.", role: "Google Review" },
+          { text: "The best service I have ever used. All of my laundry was folded to perfection. The turn around was quick, my clothes were clean and smelled great. I will be using the Laundry Fairy again!", name: "Caitlin L.", role: "Google Review" },
+          { text: "The Laundry Fairy is amazing. The entire process was quick and easy. Having various delivery options was also very helpful. Courtney was very responsive and I would highly recommend her and the laundry services she provides.", name: "Chris F.", role: "Google Review" },
+          { text: "The Laundry Fairy came to my rescue! I have been working, traveling, and keeping my baby grandson. I had a ton of laundry that I didn't have time to do! I googled 'fluff and fold' and found The Laundry Fairy.", name: "Jim B.", role: "Google Review" }
         ].map(({ text, name, role }, i) => (
           <div class={`reveal reveal-delay-${i + 1} relative bg-surface-alt rounded-2xl p-8 border-l-4 border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
             <div class="quote-mark absolute top-4 left-0"></div>
