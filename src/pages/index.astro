@@ -59,13 +59,13 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="reveal">
-          <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-4">Free Pickup & Delivery in Beaufort, SC</p>
+          <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-4">Free Pickup & Delivery in Beaufort County, SC</p>
           <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-heading leading-tight mb-6">
             Fresh Laundry,<br />
             <span class="text-primary">Delivered to Your Door</span>
           </h1>
           <p class="text-lg text-body leading-relaxed mb-8 max-w-xl">
-            We pick up your dirty laundry, wash, dry, and fold it with care — then bring it right back to your porch. Serving Beaufort zip codes 29901–29907 including MCAS Beaufort base housing.
+            We pick up your dirty laundry, wash, dry, and fold it with care — then bring it right back to your porch. Serving Beaufort County — Beaufort, Port Royal, Ladies Island, and Bluffton — including MCAS Beaufort base housing.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
             <a href="#book" class="cta-pulse inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.03] hover:shadow-xl text-lg gap-2 shadow-lg shadow-accent/25">
@@ -140,7 +140,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300">
             <span class="text-accent font-accent text-2xl font-bold">Step 2</span>
             <h3 class="text-xl font-heading font-bold text-heading mt-2 mb-3">We Weigh & Invoice</h3>
-            <p class="text-body">We weigh your laundry and send you an invoice by email at $1.75/lb. You pay online before we wash.</p>
+            <p class="text-body">We weigh your laundry and text you an invoice based on the service you selected. You pay online before we wash.</p>
           </div>
         </div>
         <div class="reveal reveal-delay-3 text-center relative">
@@ -349,7 +349,7 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Meet Your Laundry Fairy</p>
           <h2 class="text-3xl sm:text-4xl font-heading font-bold text-heading mb-6">A Local Mom-Run Business You Can Trust</h2>
           <div class="space-y-4 text-body text-lg leading-relaxed">
-            <p>Hi, I'm Courtney! I'm a stay-at-home mom in the Shadow Moss neighborhood of Beaufort. I started this laundry service to support my family while being home with my two daughters.</p>
+            <p>Hi, I'm Courtney! I'm a stay-at-home mom in the Shadow Moss neighborhood of Beaufort. I started this laundry service to support my family while being home with my three daughters.</p>
             <p>I genuinely enjoy doing laundry — there's something satisfying about fresh, clean clothes and everything folded just right! My husband is stationed at MCAS Beaufort, so I have base access and love serving our military families.</p>
             <p>I'm all about quick, clear communication and treating your clothes like my own. Thanks for supporting a local, mom-run business!</p>
           </div>
@@ -392,7 +392,7 @@ import Layout from '../layouts/Layout.astro';
         {[
           { text: "As a military spouse with three kids, this service has been a lifesaver. Clothes come back perfectly folded every single time. Courtney is amazing!", name: "Sarah M.", role: "Marine spouse, base housing" },
           { text: "So convenient! I just leave my bag on the porch and it comes back clean and folded the next day. The pricing is fair and the communication is great.", name: "Jennifer T.", role: "Shadow Moss resident" },
-          { text: "I work long hours and laundry was always piling up. Now I have one less thing to worry about. Best decision I've made! Highly recommend to anyone in Beaufort.", name: "David R.", role: "Beaufort, SC" }
+          { text: "I work long hours and laundry was always piling up. Now I have one less thing to worry about. Best decision I've made! Highly recommend to anyone in the area.", name: "David R.", role: "Beaufort County, SC" }
         ].map(({ text, name, role }, i) => (
           <div class={`reveal reveal-delay-${i + 1} relative bg-surface-alt rounded-2xl p-8 border-l-4 border-primary hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
             <div class="quote-mark absolute top-4 left-0"></div>
@@ -428,10 +428,10 @@ import Layout from '../layouts/Layout.astro';
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span class="text-sm font-medium">Service Area</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">Serving Beaufort, SC</h2>
-        <p class="text-white/80 mb-8 max-w-xl mx-auto text-lg">Free pickup and delivery for the following zip codes, including MCAS Beaufort base housing.</p>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">Serving Beaufort County, SC</h2>
+        <p class="text-white/80 mb-8 max-w-xl mx-auto text-lg">Free pickup and delivery throughout Beaufort, Port Royal, Ladies Island, and Bluffton — including MCAS Beaufort base housing.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          {['29901','29902','29903','29904','29905','29906','29907'].map((zip) => (
+          {['29901','29902','29903','29904','29905','29906','29907','29909','29910','29935'].map((zip) => (
             <span class="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-full text-sm font-semibold border border-white/20 transition-colors duration-200 cursor-default">{zip}</span>
           ))}
         </div>
@@ -448,14 +448,14 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="space-y-4 reveal" id="faq-container">
         {[
-          { q: "How does the service work?", a: "Schedule a pickup online (no payment needed). Leave your laundry on the porch and we'll pick it up. We weigh it and send you an invoice by email. Once you pay online, we wash, dry, fold, and deliver it back to your doorstep." },
+          { q: "How does the service work?", a: "Schedule a pickup online (no payment needed). Leave your laundry on the porch and we'll pick it up. We weigh it and text you an invoice. Once you pay online, we wash, dry, fold, and deliver it back to your doorstep." },
           { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
           { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
           { q: "How is pricing determined?", a: "After we pick up (or you drop off) your laundry, we weigh it and send you an invoice. Pricing starts at $1.85/lb for 48-hour return with pickup & delivery, or $1.55/lb if you drop off. 10 lb minimum per order. You don't pay anything upfront." },
-          { q: "What area do you serve?", a: "We serve the Beaufort, SC area including zip codes 29901 through 29907. This includes MCAS Beaufort base housing — we have base access!" },
+          { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Ladies Island, and Bluffton. Zip codes: 29901-29907, 29909, 29910, and 29935. This includes MCAS Beaufort base housing — we have base access!" },
           { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
-          { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime via your confirmation email or by contacting us directly. We appreciate at least 12 hours notice when possible." },
-          { q: "How do I pay?", a: "No payment is needed when you book. After we pick up and weigh your laundry, we send you an invoice via email with a secure payment link. You can pay with a credit/debit card or bank transfer. We start washing once payment is received." }
+          { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime by texting or contacting us directly. We appreciate at least 12 hours notice when possible." },
+          { q: "How do I pay?", a: "No payment is needed when you book. After we pick up and weigh your laundry, we text you an invoice with a secure payment link. You can pay with a credit/debit card or bank transfer. We start washing once payment is received." }
         ].map(({ q, a }) => (
           <div class="bg-surface rounded-2xl border border-border overflow-hidden">
             <button class="faq-btn w-full flex items-center justify-between p-6 text-left hover:bg-surface-alt/50 transition-colors" aria-expanded="false">
@@ -477,7 +477,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center mb-12 reveal">
         <p class="text-primary font-semibold text-sm tracking-widest uppercase mb-3">Ready to Get Started?</p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-heading">Schedule Your Pickup</h2>
-        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Fill out the form below and we'll confirm your pickup time. No payment needed now — we'll send an invoice after we weigh your laundry.</p>
+        <p class="text-body mt-4 max-w-2xl mx-auto text-lg">Fill out the form below and we'll confirm your pickup time. No payment needed now — we'll text you an invoice after we weigh your laundry.</p>
       </div>
       <div class="reveal">
         <div class="bg-surface rounded-3xl shadow-xl border border-border overflow-hidden">
@@ -519,8 +519,8 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 <div>
                   <label for="zip" class="block text-sm font-medium text-heading mb-2">Zip Code *</label>
-                  <input type="text" id="zip" name="zip" required pattern="2990[1-7]" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="29901" />
-                  <p class="text-xs text-muted mt-1">We serve 29901-29907</p>
+                  <input type="text" id="zip" name="zip" required pattern="(2990[1-7]|29909|29910|29935)" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="29901" />
+                  <p class="text-xs text-muted mt-1">We serve Beaufort County (29901-29907, 29909, 29910, 29935)</p>
                 </div>
               </div>
               <div>
@@ -573,7 +573,7 @@ import Layout from '../layouts/Layout.astro';
                 <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               </div>
               <h3 class="text-2xl font-heading font-bold text-heading mb-2">Pickup Scheduled!</h3>
-              <p class="text-body max-w-md mx-auto">We'll send you a confirmation email shortly. If you have any questions, reach out to us anytime.</p>
+              <p class="text-body max-w-md mx-auto">We'll text you to confirm your pickup details shortly. If you have any questions, reach out to us anytime.</p>
             </div>
           </form>
         </div>
@@ -605,7 +605,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
               <div>
                 <p class="text-sm text-muted">Service Area</p>
-                <p class="text-heading font-medium">Beaufort, SC 29901-29907</p>
+                <p class="text-heading font-medium">Beaufort County, SC</p>
               </div>
             </div>
             <div class="flex items-center gap-4">
@@ -664,7 +664,7 @@ import Layout from '../layouts/Layout.astro';
               <span class="text-lg font-bold text-primary-light font-accent"> Fairy</span>
             </div>
           </div>
-          <p class="text-sm leading-relaxed">Professional wash, dry & fold laundry service with free porch pickup and delivery in Beaufort, SC.</p>
+          <p class="text-sm leading-relaxed">Professional wash, dry & fold laundry service with free porch pickup and delivery in Beaufort County, SC.</p>
         </div>
         <div>
           <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Quick Links</h4>
@@ -678,10 +678,10 @@ import Layout from '../layouts/Layout.astro';
         <div>
           <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Service Area</h4>
           <ul class="space-y-2 text-sm">
-            <li>Beaufort, SC</li>
-            <li>Zip codes 29901-29907</li>
+            <li>Beaufort & Port Royal</li>
+            <li>Ladies Island</li>
+            <li>Bluffton</li>
             <li>MCAS Beaufort base housing</li>
-            <li>Shadow Moss & surrounding</li>
           </ul>
         </div>
         <div>
