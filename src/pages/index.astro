@@ -7,16 +7,8 @@ import Layout from '../layouts/Layout.astro';
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14 sm:h-20">
-        <a href="#" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
-            </svg>
-          </div>
-          <div>
-            <span class="text-lg font-bold text-heading font-heading">Laundry</span>
-            <span class="text-lg font-bold text-primary font-accent relative sparkle"> Fairy</span>
-          </div>
+        <a href="#" class="flex items-center group">
+          <img src="/images/logo.png" alt="Beaufort Laundry Fairy" class="h-9 w-auto max-w-[90px] sm:h-12 sm:max-w-[140px] rounded-xl object-contain transition-transform duration-300 group-hover:scale-105" />
         </a>
 
         <nav class="hidden md:flex items-center gap-8">
@@ -97,6 +89,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
             <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80" alt="Fresh folded laundry in a bright, clean setting" class="w-full h-full object-cover" loading="eager" />
           </div>
+          <img src="/images/logo.png" alt="Beaufort Laundry Fairy" class="absolute top-4 left-4 w-48 sm:w-60 lg:w-72 lg:-top-10 lg:-left-10 h-auto rounded-2xl shadow-xl z-10" />
           <div class="absolute -bottom-4 -left-4 bg-surface rounded-2xl shadow-xl p-4 border border-border">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center">
@@ -414,7 +407,7 @@ import Layout from '../layouts/Layout.astro';
         ))}
       </div>
       <div class="text-center mt-10 reveal">
-        <a href="https://www.google.com/search?q=Laundry+Fairy+Beaufort+SC+Reviews" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-surface-alt hover:bg-border/50 border border-border rounded-full transition-all duration-200 group">
+        <a href="https://www.google.com/maps/place/Laundry+Fairy/@32.4212328,-80.917827,45244m/data=!3m1!1e3!4m8!3m7!1s0x2bbae9fa6f0d0e0b:0xe96f7a4402298ee9!8m2!3d32.42134!4d-80.7530154!9m1!1b1!16s%2Fg%2F11yhknbv_0?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-surface-alt hover:bg-border/50 border border-border rounded-full transition-all duration-200 group">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -627,7 +620,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
               <div>
                 <p class="text-sm text-muted">Follow us</p>
-                <a href="https://facebook.com/beaufortlaundryfairy" target="_blank" rel="noopener" class="text-heading font-medium hover:text-primary transition-colors">Facebook</a>
+                <a href="https://www.facebook.com/people/Beaufort-Laundry-Fairy/61579032609891/" target="_blank" rel="noopener" class="text-heading font-medium hover:text-primary transition-colors">Facebook</a>
               </div>
             </div>
           </div>
@@ -668,14 +661,8 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
         <div class="sm:col-span-2 lg:col-span-1">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
-            </div>
-            <div>
-              <span class="text-lg font-bold text-white font-heading">Laundry</span>
-              <span class="text-lg font-bold text-primary-light font-accent"> Fairy</span>
-            </div>
+          <div class="mb-4">
+            <img src="/images/logo.png" alt="Beaufort Laundry Fairy" class="h-16 w-auto rounded-xl object-contain" />
           </div>
           <p class="text-sm leading-relaxed">Professional wash, dry & fold laundry service with free porch pickup and delivery in Beaufort County, SC.</p>
         </div>
@@ -701,7 +688,7 @@ import Layout from '../layouts/Layout.astro';
           <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Contact</h4>
           <ul class="space-y-2 text-sm">
             <li><a href="mailto:beaufortlaundryfairy@gmail.com" class="hover:text-white transition-colors">beaufortlaundryfairy@gmail.com</a></li>
-            <li><a href="https://facebook.com/beaufortlaundryfairy" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a></li>
+            <li><a href="https://www.facebook.com/people/Beaufort-Laundry-Fairy/61579032609891/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a></li>
             <li class="pt-2"><a href="#book" class="text-white hover:text-accent transition-colors font-medium">Schedule a Pickup</a></li>
           </ul>
         </div>

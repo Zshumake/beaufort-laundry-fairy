@@ -214,6 +214,15 @@ input[type="range"]::-moz-range-thumb {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+
+  /* Prevent individual carousel cards from pop-in animating as you scroll horizontally.
+     The carousel container itself handles the entrance reveal; cards inside
+     should all be pre-rendered visible once the container is in view. */
+  .mobile-carousel .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Testimonial quote decoration */
