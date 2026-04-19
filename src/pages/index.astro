@@ -57,7 +57,7 @@ import Layout from '../layouts/Layout.astro';
             <span class="text-primary">Delivered to Your Door</span>
           </h1>
           <p class="text-lg text-body leading-relaxed mb-8 max-w-xl">
-            We pick up your dirty laundry, wash, dry, and fold it with care, then bring it right back to your porch. Serving Beaufort, Port Royal, Ladies Island, and Bluffton, including MCAS Beaufort base housing.
+            We pick up your dirty laundry, wash, dry, and fold it with care, then bring it right back to your porch. Serving Beaufort, Port Royal, Lady's Island, and Bluffton, including military base housing.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 mb-8">
             <a href="#book" class="cta-pulse inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 hover:scale-[1.03] hover:shadow-xl text-lg gap-2 shadow-lg shadow-accent/25">
@@ -304,10 +304,10 @@ import Layout from '../layouts/Layout.astro';
                 <span class="text-body">Pounds of laundry</span>
                 <span id="weight-display" class="font-bold text-heading">20 lbs</span>
               </div>
-              <input type="range" id="weight-slider" min="10" max="60" value="20" step="1" class="w-full" />
+              <input type="range" id="weight-slider" min="10" max="80" value="20" step="1" class="w-full" />
               <div class="flex justify-between text-xs text-muted mt-1">
                 <span>10 lbs</span>
-                <span>60 lbs</span>
+                <span>80 lbs</span>
               </div>
             </div>
             <!-- Total -->
@@ -435,7 +435,7 @@ import Layout from '../layouts/Layout.astro';
           <span class="text-sm font-medium">Service Area</span>
         </div>
         <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">Serving Beaufort County, SC</h2>
-        <p class="text-white/80 mb-8 max-w-xl mx-auto text-lg">Free pickup and delivery throughout Beaufort, Port Royal, Ladies Island, and Bluffton, including MCAS Beaufort base housing.</p>
+        <p class="text-white/80 mb-8 max-w-xl mx-auto text-lg">Free pickup and delivery throughout Beaufort, Port Royal, Lady's Island, and Bluffton. Military families welcome! We have MCAS Beaufort base access.</p>
         <div class="flex flex-wrap justify-center gap-3">
           {['29901','29902','29903','29904','29905','29906','29907','29909','29910','29935'].map((zip) => (
             <span class="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-full text-sm font-semibold border border-white/20 transition-colors duration-200 cursor-default">{zip}</span>
@@ -458,7 +458,7 @@ import Layout from '../layouts/Layout.astro';
           { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
           { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
           { q: "How is pricing determined?", a: "After we pick up (or you drop off) your laundry, we weigh it and send you an invoice. Pricing starts at $1.85/lb for 48-hour return with pickup & delivery, or $1.55/lb if you drop off. 10 lb minimum per order. You don't pay anything upfront." },
-          { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Ladies Island, and Bluffton. Zip codes: 29901-29907, 29909, 29910, and 29935. This includes MCAS Beaufort base housing. We have base access!" },
+          { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Lady's Island, and Bluffton. Zip codes: 29901-29907, 29909, 29910, and 29935. We proudly serve military families in the area and have MCAS Beaufort base access!" },
           { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
           { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime by texting or contacting us directly. We appreciate at least 12 hours notice when possible." },
           { q: "How do I pay?", a: "No payment is needed when you book. After we pick up and weigh your laundry, we text you an invoice with a secure payment link. You can pay with a credit/debit card or bank transfer. We start washing once payment is received." }
@@ -507,7 +507,45 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <form id="booking-form" class="p-8" action="https://formspree.io/f/mjgpnjdn" method="POST">
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="service_type" id="service-type-input" />
             <div id="step-1" class="space-y-6">
+              <!-- Service Type Selection -->
+              <div>
+                <label class="block text-sm font-medium text-heading mb-3">Service Type <span class="text-accent">*</span></label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-1" id="service-options">
+                  <button type="button" data-service="Pickup &amp; Delivery, Same Day" data-price="$2.85/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
+                    <span class="block font-bold text-heading text-sm">Same Day</span>
+                    <span class="block text-xs text-muted mt-0.5">$2.85/lb</span>
+                  </button>
+                  <button type="button" data-service="Pickup &amp; Delivery, 24hr Return" data-price="$2.25/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
+                    <span class="block font-bold text-heading text-sm">24-Hour Return</span>
+                    <span class="block text-xs text-muted mt-0.5">$2.25/lb</span>
+                  </button>
+                  <button type="button" data-service="Pickup &amp; Delivery, 48hr Return" data-price="$1.85/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
+                    <span class="block font-bold text-heading text-sm">48-Hour Return</span>
+                    <span class="block text-xs text-muted mt-0.5">$1.85/lb</span>
+                  </button>
+                  <button type="button" data-service="Drop-Off &amp; Pick Up, Same Day" data-price="$2.55/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-accent mb-0.5">Drop-Off &amp; Pick Up</span>
+                    <span class="block font-bold text-heading text-sm">Same Day</span>
+                    <span class="block text-xs text-muted mt-0.5">$2.55/lb</span>
+                  </button>
+                  <button type="button" data-service="Drop-Off &amp; Pick Up, 24hr Return" data-price="$1.95/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-accent mb-0.5">Drop-Off &amp; Pick Up</span>
+                    <span class="block font-bold text-heading text-sm">24-Hour Return</span>
+                    <span class="block text-xs text-muted mt-0.5">$1.95/lb</span>
+                  </button>
+                  <button type="button" data-service="Drop-Off &amp; Pick Up, 48hr Return" data-price="$1.55/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
+                    <span class="block text-xs font-semibold text-accent mb-0.5">Drop-Off &amp; Pick Up</span>
+                    <span class="block font-bold text-heading text-sm">48-Hour Return</span>
+                    <span class="block text-xs text-muted mt-0.5">$1.55/lb</span>
+                  </button>
+                </div>
+                <p class="text-xs text-muted" id="service-error" style="display:none; color: var(--color-accent);">Please select a service type to continue.</p>
+              </div>
               <div class="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label for="name" class="block text-sm font-medium text-heading mb-2">Full Name *</label>
@@ -530,12 +568,12 @@ import Layout from '../layouts/Layout.astro';
                 </div>
               </div>
               <div>
-                <label for="address" class="block text-sm font-medium text-heading mb-2">Pickup Address *</label>
+                <label for="address" class="block text-sm font-medium text-heading mb-2">Address *</label>
                 <input type="text" id="address" name="address" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="123 Main St, Beaufort SC" />
               </div>
               <div class="flex items-center gap-3">
                 <input type="checkbox" id="base-housing" name="base_housing" class="w-5 h-5 rounded border-border text-primary focus:ring-primary accent-primary" />
-                <label for="base-housing" class="text-sm text-body">I live on MCAS Beaufort base housing</label>
+                <label for="base-housing" class="text-sm text-body">I live in military housing near Beaufort (base access required)</label>
               </div>
               <button type="button" id="next-1" class="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all duration-200 hover:shadow-lg text-lg">Next: Choose a Time</button>
             </div>
@@ -679,9 +717,9 @@ import Layout from '../layouts/Layout.astro';
           <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-4">Service Area</h4>
           <ul class="space-y-2 text-sm">
             <li>Beaufort & Port Royal</li>
-            <li>Ladies Island</li>
+            <li>Lady's Island</li>
             <li>Bluffton</li>
-            <li>MCAS Beaufort base housing</li>
+            <li>Military base housing</li>
           </ul>
         </div>
         <div>
@@ -855,7 +893,28 @@ import Layout from '../layouts/Layout.astro';
         if (line) { if (i < n + 1) { line.classList.remove('bg-border'); line.classList.add('bg-primary'); } else { line.classList.add('bg-border'); line.classList.remove('bg-primary'); }}
       }
     }
+    // Service type card selection
+    document.querySelectorAll('.service-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.service-btn').forEach(b => {
+          b.classList.remove('border-primary','bg-primary/10','shadow-md');
+          b.classList.add('border-border');
+        });
+        btn.classList.add('border-primary','bg-primary/10','shadow-md');
+        btn.classList.remove('border-border');
+        (document.getElementById('service-type-input') as HTMLInputElement).value = (btn as HTMLElement).dataset.service || '';
+        const errEl = document.getElementById('service-error');
+        if (errEl) errEl.style.display = 'none';
+      });
+    });
+
     document.getElementById('next-1')?.addEventListener('click', () => {
+      const serviceVal = (document.getElementById('service-type-input') as HTMLInputElement).value;
+      if (!serviceVal) {
+        const errEl = document.getElementById('service-error');
+        if (errEl) errEl.style.display = 'block';
+        return;
+      }
       let valid = true;
       ['name','email','phone','zip','address'].forEach(id => { const el = document.getElementById(id) as HTMLInputElement; if (!el.checkValidity()) { el.reportValidity(); valid = false; }});
       if (valid) showStep(1);
@@ -870,9 +929,11 @@ import Layout from '../layouts/Layout.astro';
       const v = (id: string) => esc((document.getElementById(id) as HTMLInputElement).value);
       const bh = (document.getElementById('base-housing') as HTMLInputElement).checked;
       const ins = esc((document.getElementById('instructions') as HTMLTextAreaElement).value);
+      const svc = esc((document.getElementById('service-type-input') as HTMLInputElement).value);
       s.innerHTML = [
+        ['Service', svc],
         ['Name', v('name')], ['Email', v('email')], ['Phone', v('phone')], ['Address', v('address')],
-        ...(bh ? [['Base Housing', 'Yes']] : []),
+        ...(bh ? [['Military Housing', 'Yes (requires base access)']] : []),
         ['Pickup Date', esc(new Date(d.value + 'T00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' }))],
         ['Time Window', esc(t.options[t.selectedIndex].text)],
         ...(ins ? [['Notes', ins]] : [])
