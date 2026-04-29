@@ -460,6 +460,7 @@ import Layout from '../layouts/Layout.astro';
           { q: "How is pricing determined?", a: "After we pick up (or you drop off) your laundry, we weigh it and send you an invoice. Pricing starts at $1.85/lb for 48-hour return with pickup & delivery, or $1.55/lb if you drop off. 10 lb minimum per order. You don't pay anything upfront." },
           { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Lady's Island, and Bluffton. Zip codes: 29901-29907, 29909, 29910, and 29935. We proudly serve military families in the area and have MCAS Beaufort base access!" },
           { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
+          { q: "Are there any items you don't accept?", a: "We focus on everyday wash, dry, and fold laundry, so we don't take bulk or oversized items like king-size comforters, large blankets, or heavy bedding. We also can't take dry-clean-only items. If you're unsure about something, just text us before your pickup and we'll let you know!" },
           { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime by texting or contacting us directly. We appreciate at least 12 hours notice when possible." },
           { q: "How do I pay?", a: "No payment is needed when you book. After we pick up and weigh your laundry, we text you an invoice with a secure payment link. You can pay with a credit/debit card or bank transfer. We start washing once payment is received." }
         ].map(({ q, a }) => (
@@ -596,6 +597,10 @@ import Layout from '../layouts/Layout.astro';
               <div>
                 <label for="instructions" class="block text-sm font-medium text-heading mb-2">Special Instructions</label>
                 <textarea id="instructions" name="instructions" rows="3" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none" placeholder="e.g., Leave bag on the front porch, use free & clear detergent, baby clothes included..."></textarea>
+              </div>
+              <div class="flex items-start gap-3 p-4 rounded-xl bg-secondary/50 border border-primary/20">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-sm text-body leading-relaxed">A quick note: we focus on everyday wash, dry, and fold laundry. We're not able to take bulk or oversized items like king-size comforters, large blankets, or heavy bedding. Questions? Just text us!</p>
               </div>
               <div class="flex gap-4">
                 <button type="button" id="back-2" class="flex-1 px-8 py-4 border-2 border-border text-body font-semibold rounded-full hover:bg-surface-alt transition-colors text-lg">Back</button>
