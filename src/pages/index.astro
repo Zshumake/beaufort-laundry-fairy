@@ -928,6 +928,16 @@ import Layout from '../layouts/Layout.astro';
       const d = document.getElementById('pickup-date') as HTMLInputElement;
       const t = document.getElementById('pickup-time') as HTMLSelectElement;
       if (!d.value) { d.reportValidity(); return; }
+      // Block past dates with a visible message (HTML5 min on hidden inputs
+      // causes silent form-submit failure on iOS Safari)
+      const today = new Date(); today.setHours(0,0,0,0);
+      const picked = new Date(d.value + 'T00:00');
+      if (picked < today) {
+        d.setCustomValidity('Please pick today or a future date.');
+        d.reportValidity();
+        d.setCustomValidity('');
+        return;
+      }
       if (!t.value) { t.reportValidity(); return; }
       const s = document.getElementById('booking-summary')!;
       const esc = (str: string) => { const d2 = document.createElement('div'); d2.textContent = str; return d2.innerHTML; };
@@ -950,6 +960,13 @@ import Layout from '../layouts/Layout.astro';
     document.getElementById('booking-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target as HTMLFormElement;
+      // Safety net: if any hidden field fails HTML5 validation, show a clear
+      // alert instead of silently failing (iOS Safari can't focus hidden
+      // fields, so the browser's own error message never appears)
+      if (!form.checkValidity()) {
+        alert('Some details look incomplete. Please go back and double-check your name, email, phone, zip, address, date, and time, then try again.');
+        return;
+      }
       const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
       btn.textContent = 'Submitting...';
       btn.disabled = true;
@@ -978,8 +995,9 @@ import Layout from '../layouts/Layout.astro';
       mobileCta?.classList.toggle('translate-y-full', e.isIntersecting);
     }, { threshold: 0.1 }).observe(hero!);
 
-    // Min date for pickup
-    const pd = document.getElementById('pickup-date') as HTMLInputElement;
-    if (pd) { const t = new Date(); t.setDate(t.getDate() + 1); pd.min = t.toISOString().split('T')[0]; }
+    // Date validation is handled in JS at next-2. Intentionally NOT setting
+    // a `min` attribute on the date input — a hidden required input that
+    // violates `min` causes iOS Safari to silently reject form submission
+    // on the final step with no visible error.
   </script>
 </Layout>
