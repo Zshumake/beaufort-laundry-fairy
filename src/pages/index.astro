@@ -206,7 +206,7 @@ import Layout from '../layouts/Layout.astro';
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="pickup-feature">Free pickup & delivery</span></li>
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
             </ul>
-            <a href="#book" class="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
+            <a href="#book" data-tier="48hr" class="tier-book-btn w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
               Book Now
             </a>
           </div>
@@ -230,7 +230,7 @@ import Layout from '../layouts/Layout.astro';
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Fast turnaround</span></li>
             </ul>
-            <a href="#book" class="cta-pulse w-full inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 text-sm shadow-lg shadow-accent/25">
+            <a href="#book" data-tier="24hr" class="tier-book-btn cta-pulse w-full inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full transition-all duration-200 text-sm shadow-lg shadow-accent/25">
               Book Now
             </a>
           </div>
@@ -254,7 +254,7 @@ import Layout from '../layouts/Layout.astro';
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
               <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Returned same day</span></li>
             </ul>
-            <a href="#book" class="w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
+            <a href="#book" data-tier="sameday" class="tier-book-btn w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
               Book Now
             </a>
           </div>
@@ -910,6 +910,26 @@ import Layout from '../layouts/Layout.astro';
         (document.getElementById('service-type-input') as HTMLInputElement).value = (btn as HTMLElement).dataset.service || '';
         const errEl = document.getElementById('service-error');
         if (errEl) errEl.style.display = 'none';
+      });
+    });
+
+    // Pricing card "Book Now" → pre-select matching service card before scroll.
+    // Maps the pricing tier (48hr/24hr/sameday) + active pickup/dropoff tab
+    // to the corresponding service-btn so the customer doesn't have to pick
+    // it again after landing in the booking form.
+    const tierLabel: Record<string, string> = {
+      '48hr': '48hr Return',
+      '24hr': '24hr Return',
+      'sameday': 'Same Day',
+    };
+    document.querySelectorAll('.tier-book-btn').forEach(link => {
+      link.addEventListener('click', () => {
+        const tier = (link as HTMLElement).dataset.tier;
+        if (!tier || !tierLabel[tier]) return;
+        const prefix = isPickup ? 'Pickup & Delivery' : 'Drop-Off & Pick Up';
+        const target = `${prefix}, ${tierLabel[tier]}`;
+        const match = document.querySelector(`.service-btn[data-service="${target}"]`) as HTMLElement | null;
+        match?.click();
       });
     });
 
