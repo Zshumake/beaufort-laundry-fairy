@@ -17,6 +17,11 @@ pnpm-debug.log*
 .env
 .env.production
 
+# Google Cloud service account credentials — never commit
+*-iam.gserviceaccount.com.json
+beaufort-laundry-fairy-*.json
+secrets/
+
 # macOS-specific files
 .DS_Store
 
