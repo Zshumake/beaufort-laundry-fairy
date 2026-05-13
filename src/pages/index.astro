@@ -96,8 +96,8 @@ import Layout from '../layouts/Layout.astro';
                 <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <p class="font-bold text-heading text-sm">Same-Day Available</p>
-                <p class="text-muted text-xs">24hr, 48hr, or same-day</p>
+                <p class="font-bold text-heading text-sm">Fast Turnaround</p>
+                <p class="text-muted text-xs">24-hour or 48-hour return</p>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Pricing Cards -->
-      <div class="mobile-carousel md:grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto reveal">
+      <div class="mobile-carousel md:grid md:grid-cols-2 gap-6 lg:gap-8 max-w-3xl mx-auto reveal">
         <!-- 48 Hour -->
         <div class="bg-surface rounded-2xl shadow-lg border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
           <div class="p-4 sm:p-6 text-center">
@@ -236,29 +236,6 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- Same Day -->
-        <div class="bg-surface rounded-2xl shadow-lg border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-          <div class="p-4 sm:p-6 text-center">
-            <span class="inline-block px-3 py-1 bg-accent/10 text-accent-hover text-xs font-semibold rounded-full mb-4">Fastest</span>
-            <h3 class="text-lg font-heading font-bold text-heading mb-1">Same-Day Return</h3>
-            <div class="flex items-baseline justify-center gap-1 my-4">
-              <span class="text-5xl font-heading font-bold text-heading price-amount" data-pickup="2.85" data-dropoff="2.55">$2.85</span>
-              <span class="text-lg text-muted">/ lb</span>
-            </div>
-            <p class="text-sm text-muted">10 lb minimum</p>
-          </div>
-          <div class="px-4 pb-4 sm:px-6 sm:pb-6">
-            <ul class="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Wash, dry & fold</span></li>
-              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="pickup-feature">Free pickup & delivery</span></li>
-              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Quality detergents</span></li>
-              <li class="flex items-center gap-2 text-sm"><svg class="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Returned same day</span></li>
-            </ul>
-            <a href="#book" data-tier="sameday" class="tier-book-btn w-full inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-200 text-sm">
-              Book Now
-            </a>
-          </div>
-        </div>
       </div>
 
       <!-- Price Calculator -->
@@ -269,7 +246,7 @@ import Layout from '../layouts/Layout.astro';
             <!-- Speed selector -->
             <div>
               <p class="text-sm text-body mb-3">Turnaround time</p>
-              <div class="grid grid-cols-3 gap-2" id="calc-speed-group">
+              <div class="grid grid-cols-2 gap-2" id="calc-speed-group">
                 <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-body hover:border-primary/40 transition-all duration-200 text-center" data-pickup="1.85" data-dropoff="1.55">
                   <span class="block font-bold text-heading">48hr</span>
                   <span class="block text-xs text-muted mt-0.5 calc-speed-price">$1.85/lb</span>
@@ -277,10 +254,6 @@ import Layout from '../layouts/Layout.astro';
                 <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-primary bg-primary/5 text-sm font-medium text-primary transition-all duration-200 text-center" data-pickup="2.25" data-dropoff="1.95">
                   <span class="block font-bold">24hr</span>
                   <span class="block text-xs mt-0.5 calc-speed-price">$2.25/lb</span>
-                </button>
-                <button type="button" class="calc-speed-btn px-3 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-body hover:border-primary/40 transition-all duration-200 text-center" data-pickup="2.85" data-dropoff="2.55">
-                  <span class="block font-bold text-heading">Same day</span>
-                  <span class="block text-xs text-muted mt-0.5 calc-speed-price">$2.85/lb</span>
                 </button>
               </div>
             </div>
@@ -513,12 +486,7 @@ import Layout from '../layouts/Layout.astro';
               <!-- Service Type Selection -->
               <div>
                 <label class="block text-sm font-medium text-heading mb-3">Service Type <span class="text-accent">*</span></label>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-1" id="service-options">
-                  <button type="button" data-service="Pickup &amp; Delivery, Same Day" data-price="$2.85/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
-                    <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
-                    <span class="block font-bold text-heading text-sm">Same Day</span>
-                    <span class="block text-xs text-muted mt-0.5">$2.85/lb</span>
-                  </button>
+                <div class="grid grid-cols-2 gap-3 mb-1" id="service-options">
                   <button type="button" data-service="Pickup &amp; Delivery, 24hr Return" data-price="$2.25/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
                     <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
                     <span class="block font-bold text-heading text-sm">24-Hour Return</span>
@@ -528,11 +496,6 @@ import Layout from '../layouts/Layout.astro';
                     <span class="block text-xs font-semibold text-primary mb-0.5">Pickup &amp; Delivery</span>
                     <span class="block font-bold text-heading text-sm">48-Hour Return</span>
                     <span class="block text-xs text-muted mt-0.5">$1.85/lb</span>
-                  </button>
-                  <button type="button" data-service="Drop-Off &amp; Pick Up, Same Day" data-price="$2.55/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
-                    <span class="block text-xs font-semibold text-accent mb-0.5">Drop-Off &amp; Pick Up</span>
-                    <span class="block font-bold text-heading text-sm">Same Day</span>
-                    <span class="block text-xs text-muted mt-0.5">$2.55/lb</span>
                   </button>
                   <button type="button" data-service="Drop-Off &amp; Pick Up, 24hr Return" data-price="$1.95/lb" class="service-btn text-left px-4 py-3 rounded-xl border-2 border-border hover:border-primary hover:bg-primary/5 transition-all duration-200">
                     <span class="block text-xs font-semibold text-accent mb-0.5">Drop-Off &amp; Pick Up</span>
@@ -914,13 +877,12 @@ import Layout from '../layouts/Layout.astro';
     });
 
     // Pricing card "Book Now" → pre-select matching service card before scroll.
-    // Maps the pricing tier (48hr/24hr/sameday) + active pickup/dropoff tab
-    // to the corresponding service-btn so the customer doesn't have to pick
-    // it again after landing in the booking form.
+    // Maps the pricing tier (48hr/24hr) + active pickup/dropoff tab to the
+    // corresponding service-btn so the customer doesn't have to pick it
+    // again after landing in the booking form.
     const tierLabel: Record<string, string> = {
       '48hr': '48hr Return',
       '24hr': '24hr Return',
-      'sameday': 'Same Day',
     };
     document.querySelectorAll('.tier-book-btn').forEach(link => {
       link.addEventListener('click', () => {
@@ -948,12 +910,13 @@ import Layout from '../layouts/Layout.astro';
       const d = document.getElementById('pickup-date') as HTMLInputElement;
       const t = document.getElementById('pickup-time') as HTMLSelectElement;
       if (!d.value) { d.reportValidity(); return; }
-      // Block past dates with a visible message (HTML5 min on hidden inputs
-      // causes silent form-submit failure on iOS Safari)
-      const today = new Date(); today.setHours(0,0,0,0);
+      // Block same-day and past dates with a visible message. HTML5 `min`
+      // on a hidden required input causes silent form-submit failure on
+      // iOS Safari, so we validate manually with a custom message here.
+      const tomorrow = new Date(); tomorrow.setHours(0,0,0,0); tomorrow.setDate(tomorrow.getDate() + 1);
       const picked = new Date(d.value + 'T00:00');
-      if (picked < today) {
-        d.setCustomValidity('Please pick today or a future date.');
+      if (picked < tomorrow) {
+        d.setCustomValidity('We need at least one day to schedule. Please pick tomorrow or later.');
         d.reportValidity();
         d.setCustomValidity('');
         return;
