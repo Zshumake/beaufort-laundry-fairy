@@ -2,13 +2,12 @@
  * Cloudflare Worker: laundry-fairy-bookings
  *
  * Receives booking form submissions from beaufortlaundryfairy.com and creates
- * a corresponding event on Courtney's Google Calendar.
+ * a row in Courtney's Airtable "Bookings" table.
  *
  * Secrets required (set in Cloudflare dashboard → Settings → Variables and Secrets):
- *   - GOOGLE_SERVICE_ACCOUNT_EMAIL  e.g. laundry-fairy-bookings@beaufort-laundry-fairy.iam.gserviceaccount.com
- *   - GOOGLE_PRIVATE_KEY            the private_key field from the downloaded JSON key file
- *                                   (full string, including BEGIN/END PRIVATE KEY lines)
- *   - CALENDAR_ID                   the calendar to write events to (e.g. beaufortlaundryfairy@gmail.com)
+ *   - AIRTABLE_TOKEN       Personal Access Token from airtable.com → Builder Hub → Personal access tokens
+ *   - AIRTABLE_BASE_ID     Base ID from the Airtable URL (starts with `app...`)
+ *   - AIRTABLE_TABLE_NAME  Defaults to "Bookings" if not set
  *
  * Deploy: paste this entire file into the Cloudflare dashboard editor for the
  * `laundry-fairy-bookings` Worker, then click "Save and deploy".
@@ -19,18 +18,10 @@ const ALLOWED_ORIGINS = [
   'https://beaufortlaundryfairy.com',
 ];
 
-const TIME_WINDOWS = {
-  morning: { start: '08:00', end: '12:00', label: 'Morning (8am – 12pm)' },
-  afternoon: { start: '12:00', end: '16:00', label: 'Afternoon (12pm – 4pm)' },
-  evening: { start: '16:00', end: '19:00', label: 'Evening (4pm – 7pm)' },
-};
-
-// Google Calendar color IDs: https://developers.google.com/calendar/api/v3/reference/colors
-const SERVICE_COLORS = {
-  'Pickup & Delivery, 24hr Return': '11', // Tomato (red) — urgent
-  'Pickup & Delivery, 48hr Return': '9',  // Blueberry — standard pickup
-  'Drop-Off & Pick Up, 24hr Return': '6', // Tangerine — urgent drop-off
-  'Drop-Off & Pick Up, 48hr Return': '10',// Basil (green) — standard drop-off
+const TIME_WINDOW_LABELS = {
+  morning: 'Morning (8am-12pm)',
+  afternoon: 'Afternoon (12pm-4pm)',
+  evening: 'Evening (4pm-7pm)',
 };
 
 export default {
@@ -66,30 +57,44 @@ export default {
       }
     }
 
+    const fields = {
+      'Customer Name': body.name,
+      'Status': 'New Booking',
+      'Service Type': body.service_type,
+      'Pickup Date': body.pickup_date,
+      'Time Window': TIME_WINDOW_LABELS[body.pickup_time] || body.pickup_time,
+      'Phone': body.phone,
+      'Email': body.email,
+      'Address': body.address,
+      'Zip': body.zip || '',
+      'Military Base Housing': body.base_housing === 'on' || body.base_housing === true,
+      'Special Instructions': body.instructions || '',
+      'Booking Source': 'Website',
+    };
+
+    const tableName = env.AIRTABLE_TABLE_NAME || 'Bookings';
+    const url = `https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}`;
+
     try {
-      const accessToken = await getGoogleAccessToken(env);
-      const event = buildCalendarEvent(body);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${env.AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        // typecast: true lets Airtable accept close matches on single-select
+        // fields, so a minor option-rename in the schema doesn't break us.
+        body: JSON.stringify({ fields, typecast: true }),
+      });
 
-      const calRes = await fetch(
-        `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(env.CALENDAR_ID)}/events`,
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(event),
-        }
-      );
-
-      if (!calRes.ok) {
-        const errText = await calRes.text();
-        console.error('Calendar API failed:', calRes.status, errText);
-        return json({ error: 'Calendar API failed', status: calRes.status, details: errText }, 500, cors);
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error('Airtable API failed:', res.status, errText);
+        return json({ error: 'Airtable API failed', status: res.status, details: errText }, 500, cors);
       }
 
-      const created = await calRes.json();
-      return json({ success: true, eventId: created.id, htmlLink: created.htmlLink }, 200, cors);
+      const record = await res.json();
+      return json({ success: true, recordId: record.id }, 200, cors);
     } catch (err) {
       console.error('Worker error:', err);
       return json({ error: err.message || 'Unknown error' }, 500, cors);
@@ -114,107 +119,4 @@ function json(obj, status, cors) {
     status,
     headers: { 'Content-Type': 'application/json', ...cors },
   });
-}
-
-function buildCalendarEvent(b) {
-  const tw = TIME_WINDOWS[b.pickup_time] || TIME_WINDOWS.morning;
-  const startDateTime = `${b.pickup_date}T${tw.start}:00`;
-  const endDateTime = `${b.pickup_date}T${tw.end}:00`;
-
-  const descLines = [
-    `Service: ${b.service_type}`,
-    '',
-    `Customer: ${b.name}`,
-    `Phone: ${b.phone}`,
-    `Email: ${b.email}`,
-    '',
-    `Address: ${b.address}`,
-    b.zip ? `Zip: ${b.zip}` : null,
-    b.base_housing === 'on' || b.base_housing === true ? 'Military base housing (base access required)' : null,
-    '',
-    `Time window: ${tw.label}`,
-    b.instructions ? `\nSpecial instructions:\n${b.instructions}` : null,
-  ].filter(Boolean);
-
-  return {
-    summary: `[${b.service_type}] ${b.name}`,
-    description: descLines.join('\n'),
-    location: b.address,
-    start: { dateTime: startDateTime, timeZone: 'America/New_York' },
-    end: { dateTime: endDateTime, timeZone: 'America/New_York' },
-    colorId: SERVICE_COLORS[b.service_type] || '9',
-    reminders: {
-      useDefault: false,
-      overrides: [
-        { method: 'popup', minutes: 60 },
-        { method: 'popup', minutes: 24 * 60 },
-      ],
-    },
-  };
-}
-
-// ─── Google Service Account JWT auth (using Web Crypto, no libraries) ────────
-
-async function getGoogleAccessToken(env) {
-  const now = Math.floor(Date.now() / 1000);
-  const claim = {
-    iss: env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    scope: 'https://www.googleapis.com/auth/calendar',
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now,
-  };
-  const header = { alg: 'RS256', typ: 'JWT' };
-
-  const encodedHeader = base64url(new TextEncoder().encode(JSON.stringify(header)));
-  const encodedClaim = base64url(new TextEncoder().encode(JSON.stringify(claim)));
-  const unsigned = `${encodedHeader}.${encodedClaim}`;
-
-  const cryptoKey = await importPrivateKey(env.GOOGLE_PRIVATE_KEY);
-  const signature = await crypto.subtle.sign(
-    'RSASSA-PKCS1-v1_5',
-    cryptoKey,
-    new TextEncoder().encode(unsigned)
-  );
-  const encodedSignature = base64url(new Uint8Array(signature));
-  const jwt = `${unsigned}.${encodedSignature}`;
-
-  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      assertion: jwt,
-    }),
-  });
-
-  if (!tokenRes.ok) {
-    throw new Error(`Token exchange failed: ${tokenRes.status} ${await tokenRes.text()}`);
-  }
-
-  const data = await tokenRes.json();
-  return data.access_token;
-}
-
-async function importPrivateKey(pem) {
-  // Handle both literal-newline and escaped-newline forms of the key
-  const normalized = pem.replace(/\\n/g, '\n').trim();
-  const pemContents = normalized
-    .replace(/-----BEGIN PRIVATE KEY-----/, '')
-    .replace(/-----END PRIVATE KEY-----/, '')
-    .replace(/\s+/g, '');
-  const binaryDer = Uint8Array.from(atob(pemContents), (c) => c.charCodeAt(0));
-  return crypto.subtle.importKey(
-    'pkcs8',
-    binaryDer,
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-}
-
-function base64url(bytes) {
-  let str = '';
-  for (const b of bytes) str += String.fromCharCode(b);
-  return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }

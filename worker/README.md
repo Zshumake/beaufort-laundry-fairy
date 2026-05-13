@@ -1,7 +1,7 @@
 # Booking Handler Worker
 
 Cloudflare Worker that receives booking submissions from beaufortlaundryfairy.com
-and creates a corresponding event on Courtney's Google Calendar.
+and creates a row in Courtney's Airtable "Bookings" table.
 
 ## Architecture
 
@@ -11,7 +11,7 @@ Booking form submits
     ├──→ Formspree (email — already working, unchanged)
     │
     └──→ This Worker (laundry-fairy-bookings)
-            └──→ Google Calendar API → event on Courtney's calendar
+            └──→ Airtable API → row in Bookings table
 ```
 
 If the Worker fails for any reason, Formspree still delivers the email. No
@@ -33,9 +33,33 @@ Set these in the Cloudflare dashboard under
 
 | Name | Value | Source |
 |---|---|---|
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `laundry-fairy-bookings@beaufort-laundry-fairy.iam.gserviceaccount.com` | Google Cloud → IAM → Service Accounts |
-| `GOOGLE_PRIVATE_KEY` | Full `private_key` value from the downloaded JSON key file (including BEGIN/END lines) | Google Cloud → Service Account → Keys → Add JSON key |
-| `CALENDAR_ID` | Calendar ID Courtney shared with the service account | Google Calendar → Settings → Integrate calendar |
+| `AIRTABLE_TOKEN` | Personal Access Token (starts with `pat...`) | airtable.com → click profile pic → Builder Hub → Personal access tokens |
+| `AIRTABLE_BASE_ID` | Base ID (starts with `app...`) | The `appXXXXXXX` portion of your Airtable URL when viewing the base |
+| `AIRTABLE_TABLE_NAME` | `Bookings` (optional — defaults to "Bookings" if not set) | The name of the table inside the base |
+
+## Required Airtable Schema
+
+Table named `Bookings` with these columns:
+
+| Column | Type | Notes |
+|---|---|---|
+| Customer Name | Single line text | Primary field |
+| Status | Single select | Options: New Booking, Picked Up, Washing, Delivered, Paid, Cancelled |
+| Service Type | Single select | Options: Pickup & Delivery, 24hr Return / Pickup & Delivery, 48hr Return / Drop-Off & Pick Up, 24hr Return / Drop-Off & Pick Up, 48hr Return |
+| Pickup Date | Date | No time field |
+| Time Window | Single select | Options: Morning (8am-12pm), Afternoon (12pm-4pm), Evening (4pm-7pm) |
+| Phone | Phone number | |
+| Email | Email | |
+| Address | Long text | |
+| Zip | Single line text | |
+| Military Base Housing | Checkbox | |
+| Special Instructions | Long text | |
+| Weight (lbs) | Number | Filled in manually after weighing |
+| Rate ($/lb) | Number | Filled in manually based on service |
+| Total ($) | Formula | `{Weight (lbs)} * {Rate ($/lb)}` formatted as currency |
+| Booking Source | Single select | Options: Website, Text, Facebook, Referral |
+| Created | Created time | Auto-fills |
+| Notes | Long text | For Courtney's personal notes |
 
 ## Request shape
 
@@ -56,7 +80,7 @@ Expects a `POST` with JSON body:
 }
 ```
 
-Returns `{ "success": true, "eventId": "...", "htmlLink": "..." }` on success,
+Returns `{ "success": true, "recordId": "rec..." }` on success,
 or `{ "error": "..." }` on failure.
 
 ## Testing
@@ -77,4 +101,4 @@ curl -X POST https://laundry-fairy-bookings.<your-subdomain>.workers.dev \
   }'
 ```
 
-An event should appear on Courtney's calendar within seconds.
+A row should appear in Courtney's Airtable Bookings table within seconds.
