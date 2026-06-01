@@ -852,6 +852,11 @@ import Layout from '../layouts/Layout.astro';
     const steps = [document.getElementById('step-1'), document.getElementById('step-2'), document.getElementById('step-3')];
     function showStep(n: number) {
       steps.forEach((s, i) => s?.classList.toggle('hidden', i !== n));
+      // Scroll the booking section heading back into view. Without this,
+      // step 1 is taller than steps 2/3, and after advancing the user's
+      // scroll position lands them in the Contact section below — confusing,
+      // especially for older customers who don't realize they need to scroll up.
+      document.getElementById('book')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       for (let i = 1; i <= 3; i++) {
         const ci = document.querySelector(`#si-${i} div`)!;
         const cl = document.querySelector(`#si-${i} span`);
@@ -997,9 +1002,21 @@ import Layout from '../layouts/Layout.astro';
       mobileCta?.classList.toggle('translate-y-full', e.isIntersecting);
     }, { threshold: 0.1 }).observe(hero!);
 
-    // Date validation is handled in JS at next-2. Intentionally NOT setting
-    // a `min` attribute on the date input — a hidden required input that
-    // violates `min` causes iOS Safari to silently reject form submission
-    // on the final step with no visible error.
+    // Set the date picker's earliest selectable day to tomorrow. Today and
+    // past dates appear grayed out in the picker so customers can't pick a
+    // same-day slot (we need at least one day's notice).
+    //
+    // Two layers of defense already exist if today still gets picked somehow
+    // (browser bug, typed-in value, etc.):
+    //   1. The next-2 click handler shows an explicit "we need at least one
+    //      day to schedule" message and blocks step advancement.
+    //   2. The form submit handler runs checkValidity() and alerts on
+    //      failure, preventing the iOS Safari silent-failure mode.
+    const pickupDateInput = document.getElementById('pickup-date') as HTMLInputElement | null;
+    if (pickupDateInput) {
+      const t = new Date();
+      t.setDate(t.getDate() + 1);
+      pickupDateInput.min = t.toISOString().split('T')[0];
+    }
   </script>
 </Layout>
