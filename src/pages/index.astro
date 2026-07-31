@@ -410,7 +410,7 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-3xl sm:text-4xl font-heading font-bold mb-4">Serving Beaufort County, SC</h2>
         <p class="text-white/80 mb-8 max-w-xl mx-auto text-lg">Free pickup and delivery throughout Beaufort, Port Royal, Lady's Island, and Bluffton. Military families welcome! We have MCAS Beaufort base access.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          {['29901','29902','29903','29904','29905','29906','29907','29909','29910','29935'].map((zip) => (
+          {['29901','29902','29903','29904','29905','29906','29907','29909','29910','29935','29940'].map((zip) => (
             <span class="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-full text-sm font-semibold border border-white/20 transition-colors duration-200 cursor-default">{zip}</span>
           ))}
         </div>
@@ -431,7 +431,7 @@ import Layout from '../layouts/Layout.astro';
           { q: "What cleaning products do you use?", a: "We use high-quality, commonly trusted laundry detergents. Free & clear fragrance-free options are available upon request. Just let us know your preferences when booking!" },
           { q: "How should I prepare my laundry?", a: "You can leave your laundry in a trash bag, laundry bag, or your own hamper. We'll return your clean clothes bagged up inside the same container." },
           { q: "How is pricing determined?", a: "After we pick up (or you drop off) your laundry, we weigh it and send you an invoice. Pricing starts at $1.85/lb for 48-hour return with pickup & delivery, or $1.55/lb if you drop off. 10 lb minimum per order. You don't pay anything upfront." },
-          { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Lady's Island, and Bluffton. Zip codes: 29901-29907, 29909, 29910, and 29935. We proudly serve military families in the area and have MCAS Beaufort base access!" },
+          { q: "What area do you serve?", a: "We serve Beaufort County, SC including Beaufort, Port Royal, Lady's Island, Bluffton, and Seabrook. Zip codes: 29901-29907, 29909, 29910, 29935, and 29940. We proudly serve military families in the area and have MCAS Beaufort base access! Note: pickup & delivery in Seabrook (29940) is available after 5pm only. Drop-off is available anytime." },
           { q: "Do you handle baby and children's clothes?", a: "Absolutely! We're happy to wash kids and baby clothes. Just let us know if you'd like us to use Free & Clear detergent or have any other preferences." },
           { q: "Are there any items you don't accept?", a: "We focus on everyday wash, dry, and fold laundry, so we don't take bulk or oversized items like king-size comforters, large blankets, or heavy bedding. We also can't take dry-clean-only items, or laundry heavily soiled with bodily fluids (blood, vomit, urine, or feces) for the health and safety of our team. If you're unsure about something, just text us before your pickup and we'll let you know!" },
           { q: "What's your cancellation policy?", a: "You can reschedule or cancel anytime by texting or contacting us directly. We appreciate at least 12 hours notice when possible." },
@@ -527,8 +527,8 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 <div>
                   <label for="zip" class="block text-sm font-medium text-heading mb-2">Zip Code *</label>
-                  <input type="text" id="zip" name="zip" required pattern="(2990[1-7]|29909|29910|29935)" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="29901" />
-                  <p class="text-xs text-muted mt-1">We serve Beaufort County (29901-29907, 29909, 29910, 29935)</p>
+                  <input type="text" id="zip" name="zip" required pattern="(2990[1-7]|29909|29910|29935|29940)" class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" placeholder="29901" />
+                  <p class="text-xs text-muted mt-1">We serve Beaufort County (29901-29907, 29909, 29910, 29935, 29940)</p>
                 </div>
               </div>
               <div>
@@ -551,11 +551,15 @@ import Layout from '../layouts/Layout.astro';
                   <label for="pickup-time" class="block text-sm font-medium text-heading mb-2">Time Window *</label>
                   <select id="pickup-time" name="pickup_time" required class="w-full px-4 py-3 rounded-xl border border-border bg-surface-alt text-heading focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors">
                     <option value="">Select a time...</option>
-                    <option value="morning">Morning (8am - 12pm)</option>
-                    <option value="afternoon">Afternoon (12pm - 4pm)</option>
-                    <option value="evening">Evening (4pm - 7pm)</option>
+                    <option value="morning" data-time-slot="morning">Morning (8am - 12pm)</option>
+                    <option value="afternoon" data-time-slot="afternoon">Afternoon (12pm - 4pm)</option>
+                    <option value="evening" data-time-slot="evening">Evening (4pm - 7pm)</option>
                   </select>
                 </div>
+              </div>
+              <div id="seabrook-note" class="hidden flex items-start gap-3 p-4 rounded-xl bg-accent/10 border border-accent/30">
+                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-sm text-body leading-relaxed">Heads up! Pickup & delivery in Seabrook (29940) is only available in the Evening window (after 5pm). If you'd like a morning or afternoon slot, go back and pick a <strong>Drop-Off &amp; Pick Up</strong> service instead.</p>
               </div>
               <div>
                 <label for="instructions" class="block text-sm font-medium text-heading mb-2">Special Instructions</label>
@@ -913,6 +917,23 @@ import Layout from '../layouts/Layout.astro';
       });
     });
 
+    // Seabrook (29940) pickup & delivery is only available after 5pm — one
+    // provider covers the area and she runs evening only. Drop-off has no
+    // such restriction. Applied when advancing to step 2 so it reflects
+    // whichever service the customer picked in step 1.
+    function applySeabrookRestriction() {
+      const zip = (document.getElementById('zip') as HTMLInputElement).value;
+      const svc = (document.getElementById('service-type-input') as HTMLInputElement).value;
+      const timeSelect = document.getElementById('pickup-time') as HTMLSelectElement;
+      const note = document.getElementById('seabrook-note');
+      const restrict = zip === '29940' && svc.startsWith('Pickup & Delivery');
+      timeSelect.querySelectorAll('option').forEach((opt) => {
+        const slot = (opt as HTMLOptionElement).dataset.timeSlot;
+        if (slot === 'morning' || slot === 'afternoon') (opt as HTMLOptionElement).disabled = restrict;
+      });
+      if (restrict && (timeSelect.value === 'morning' || timeSelect.value === 'afternoon')) timeSelect.value = '';
+      note?.classList.toggle('hidden', !restrict);
+    }
     document.getElementById('next-1')?.addEventListener('click', () => {
       const serviceVal = (document.getElementById('service-type-input') as HTMLInputElement).value;
       if (!serviceVal) {
@@ -922,7 +943,7 @@ import Layout from '../layouts/Layout.astro';
       }
       let valid = true;
       ['name','email','phone','zip','address'].forEach(id => { const el = document.getElementById(id) as HTMLInputElement; if (!el.checkValidity()) { el.reportValidity(); valid = false; }});
-      if (valid) showStep(1);
+      if (valid) { applySeabrookRestriction(); showStep(1); }
     });
     document.getElementById('next-2')?.addEventListener('click', () => {
       const d = document.getElementById('pickup-date') as HTMLInputElement;
