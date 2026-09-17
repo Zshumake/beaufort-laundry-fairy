@@ -27,3 +27,4 @@ secrets/
 
 # jetbrains setting folder
 .idea/
+wrangler.toml
